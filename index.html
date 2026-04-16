@@ -2,309 +2,518 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- My CSS -->
-    <link rel="stylesheet" href="./asset/css/style.css">
-    <title>Undangan</title>
+    <title>Undangan Pernikahan - Amel & Farhan</title>
+
+    <style>
+        /* TEMA ROMANTIS ELEGANT */
+        :root {
+            --primary: #c28b8a; /* Dusty Rose */
+            --primary-light: #eadddb;
+            --bg-color: #fdfbf7; /* Creamy White */
+            --text-dark: #4a4242;
+            --text-light: #7c7272;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        .title-script {
+            font-family: 'Alex Brush', cursive;
+            color: var(--primary);
+            font-size: 3.5rem;
+            line-height: 1;
+        }
+
+        .title-serif {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--primary);
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Cover Depan (Box) */
+        #box {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 9999;
+            background-color: var(--bg-color);
+            transition: transform 1s ease-in-out, opacity 1s ease;
+        }
+
+        #box.hide {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #box .background {
+            height: 100vh;
+            /* Pastikan path gambar ini bener ada di folder lu */
+            background: linear-gradient(rgba(253, 251, 247, 0.8), rgba(253, 251, 247, 0.9)), url('./asset/img/cover-bg.jpg') center/cover;
+            background-color: #fdfbf7; /* Fallback color */
+            border: 10px solid var(--primary-light);
+        }
+
+        /* Buttons */
+        .btn-romantic {
+            background-color: #c28b8a !important;
+            color: #fff !important;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(194, 139, 138, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-romantic:hover {
+            background-color: #a87271 !important;
+            color: #fff !important;
+            transform: translateY(-3px);
+        }
+
+        /* Hero Section Baru */
+        .hero-section {
+            height: 100vh;
+            /* Pastikan gambar ini ada, ini bakal jadi foto utama pas cover dibuka */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./asset/img/2-min.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-section .title-script {
+            color: #fff;
+            font-size: 5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            margin: 10px 0;
+        }
+
+        .hero-section p {
+            color: #fdfbf7;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* Card Elements */
+        .card-elegant {
+            background: #fff;
+            border: 1px solid var(--primary-light);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+            padding: 3rem 2rem;
+        }
+
+        /* Circle Image Profiles */
+        .person-circle img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid var(--primary-light);
+            padding: 5px;
+        }
+
+        /* Timeline / Kisah Cinta */
+        .timeline {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            padding-left: 30px;
+            border-left: 2px solid var(--primary-light);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -37px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 0 5px var(--primary-light);
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+        .gallery-grid img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Floating Audio */
+        .floating-audio {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(194, 139, 138, 0.4);
+            cursor: pointer;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(194, 139, 138, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(194, 139, 138, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(194, 139, 138, 0); }
+        }
+
+        .audio-paused { animation: none; background-color: var(--text-light); }
+
+        /* Divider */
+        .floral-divider {
+            width: 150px;
+            margin: 20px auto;
+            opacity: 0.6;
+        }
+    </style>
 </head>
 
 <body>
 
+    <audio src="./asset/audio/audio.mp3" id="myAudio" loop></audio>
 
-    <audio src="./asset/audio/audio.mp3" id="myAudio"></audio>
+    <div class="floating-audio" id="audioControl" onclick="toggleAudio()" style="display: none;">
+        <i class="fas fa-music"></i>
+    </div>
 
-    <div id="box" class="">
-        <div class="background d-flex align-items-center justify-content-center">
-            <div class="text-center">
-                <span class="text-white">The Wedding of</span>
-                <p>Amel & Farhan</p>
-                <button class="btn" onclick="togglePlay()">Open invitation</button>
+    <div id="box">
+        <div class="background d-flex align-items-center justify-content-center p-4">
+            <div class="text-center bg-white p-5 card-elegant" data-aos="zoom-in" data-aos-duration="1500" style="max-width: 450px;">
+                <p class="text-uppercase tracking-widest mb-2" style="letter-spacing: 3px; font-size: 0.8rem; color: #c28b8a !important;">The Wedding Of</p>
+                <h1 class="title-script my-4" style="color: #c28b8a !important;">Amel & Farhan</h1>
+                <p class="mb-4" style="color: #4a4242 !important;">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+                <button class="btn btn-romantic mt-3" onclick="openInvitation()">Buka Undangan</button>
             </div>
         </div>
     </div>
 
-    <!-- Header -->
-    <div class="header text-center text-white text-center justify-content-center">
-        <p>Amel & Farhan <br>Wedding</p>
-    </div>
+    <section class="hero-section">
+        <div class="container" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="500">
+            <p>WE ARE GETTING MARRIED</p>
+            <h1 class="title-script">Amel & Farhan</h1>
+            <p class="mt-3">05 . 12 . 2021</p>
+        </div>
+    </section>
 
-    <div class="card-wrapper py-3">
-        <div class="container d-flex justify-content-center">
-            <div class="card shadow text-center align-items-center p-5">
-                <img src="./asset//img/icon-1.png" width="200" alt="">
-                <p style="font-size: 25px;">وَمِنْ ءَايَٰتِهِۦٓ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَٰجًا
-                    لِّتَسْكُنُوٓا۟ إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِى ذَٰلِكَ لَءَايَٰتٍ
-                    لِّقَوْمٍ يَتَفَكَّرُونَوَمِنْ ءَايَٰتِهِۦٓ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَٰجًا
-                    لِّتَسْكُنُوٓا۟ إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِى ذَٰلِكَ لَءَايَٰتٍ
-                    لِّقَوْمٍ يَتَفَكَّرُونَ</p>
-                <i>“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu
-                    dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di
-                    antaramu rasa kasih dan sayang.diantara kamu. sesungguhnya pada yang demikian terdapat tanda-tanda
-                    kebesaran-Nya bagi kaum yang berfikir”</i> <br>
-                <span>(Q.S. Ar-Rum : 21)</span>
+    <div class="container py-5 mt-4 text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-8" data-aos="fade-up" data-aos-duration="1500">
+                <img src="./asset/img/icon-1.png" width="60" alt="" class="mb-4 floral-divider">
+                <p class="fs-5" style="font-family: 'Cormorant Garamond', serif; color: var(--text-dark);">وَمِنْ ءَايَٰتِهِۦٓ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَٰجًا لِّتَسْكُنُوٓا۟ إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
+                <p class="fst-italic">“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.”</p>
+                <strong style="color: var(--primary);">(Q.S. Ar-Rum : 21)</strong>
             </div>
         </div>
     </div>
 
-    <div class="perkenalan py-3">
+    <div class="container py-5">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="title-script">Sang Mempelai</h2>
+        </div>
+        <div class="row justify-content-center align-items-center text-center person-circle">
+            <div class="col-md-5 mb-4" data-aos="fade-right" data-aos-duration="1500">
+                <img src="./asset/img/1-min (1).jpg" class="shadow-sm mb-4" alt="Amel">
+                <h3 class="title-serif">Annisa Meilani, S.Farm</h3>
+                <p>Putri pertama dari<br>Bpk. Wawan & Ibu Nining Karningsih</p>
+            </div>
+            
+            <div class="col-md-2 mb-4" data-aos="zoom-in">
+                <h1 class="title-script" style="font-size: 4rem;">&</h1>
+            </div>
+
+            <div class="col-md-5 mb-4" data-aos="fade-left" data-aos-duration="1500">
+                <img src="./asset/img/crop.jpg" class="shadow-sm mb-4" alt="Farhan">
+                <h3 class="title-serif">Farhan Rizky Hidayat, S.T</h3>
+                <p>Putra pertama dari<br>Bpk. Lukman Hidayat & Ibu Etti Rohaeti</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-5" style="background-color: var(--primary-light);">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Perkenalkan kami dua pasangan yang berbahagia, <br> putra dan putri dari dua keluarga yang akan
-                        melebur menjadi satu</p>
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="title-script" style="color: var(--text-dark);">Rangkaian Acara</h2>
+            </div>
+            <div class="row justify-content-center gap-4">
+                <div class="col-md-5">
+                    <div class="card-elegant text-center h-100" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-ring fs-1 mb-3" style="color: var(--primary);"></i>
+                        <h3 class="title-serif">Akad Nikah</h3>
+                        <p class="fw-bold text-dark mt-3">Minggu, 5 Desember 2021</p>
+                        <p>Pukul 07.00 WIB - Selesai</p>
+                        <p><strong>Ponyo Resto & Wedding</strong><br>Jl. Raya Tagog Cinunuk No.186, Cileunyi</p>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="card-elegant text-center h-100" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-glass-cheers fs-1 mb-3" style="color: var(--primary);"></i>
+                        <h3 class="title-serif">Resepsi</h3>
+                        <p class="fw-bold text-dark mt-3">Minggu, 5 Desember 2021</p>
+                        <p>Pukul 10.00 - 11.30 WIB (Sesi 1)</p>
+                        <p><strong>Ponyo Resto & Wedding</strong><br>Jl. Raya Tagog Cinunuk No.186, Cileunyi</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="card-wrapper py-3">
-        <div class="d-flex container my-5 person-circle">
-            <div class="text-center" data-aos="fade-right" data-aos-duration="1500">
-                <img src="./asset/img/1-min (1).jpg" class="w-50 rounded-circle shadow my-5" alt="">
-                <p>Annisa Meilani, S.Farm</p>
-                <span>Putri ke-1 dari Bpk.Wawan & Ibu Nining Karningsih</span>
-            </div>
-            <div class="text-center" data-aos="fade-left" data-aos-duration="1500">
-                <img src="./asset/img/crop.jpg" class="w-50 rounded-circle shadow my-5" alt="">
-                <p>Farhan Rizky Hidayat, S.T</p>
-                <span>Putra ke-1 dari Bpk.Lukman Hidayat & Ibu Etti Rohaeti</span>
+            <div class="text-center mt-5" data-aos="zoom-in">
+                <a href="https://g.page/ponyocinunuk?share" target="_blank" class="btn btn-romantic" style="background-color: #fff !important; color: var(--primary) !important; border: 1px solid var(--primary);">
+                    <i class="fas fa-map-marker-alt me-2"></i> Buka Google Maps
+                </a>
             </div>
         </div>
     </div>
 
-
-    <div class="card-wrapper py-3">
-        <div class="container d-flex justify-content-center" style="overflow-x: hidden;">
-            <div class="card shadow text-center align-items-center p-5" data-aos="fade-left" data-aos-duration="1500">
-                <img src="./asset//img/icon-2.png" alt="">
-                <p>Akad :</p>
-                <span class="text-center">
-                    Minggu, 5 Desember 2021 <br>
-                    Pukul : 7.00 WIB <br>
-                    Ponyo Resto & Wedding
-                </span>
-            </div>
+    <div class="container py-5 my-5">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="title-script">Kisah Cinta Kami</h2>
         </div>
-    </div>
-    <div class="card-wrapper py-3">
-        <div class="container d-flex justify-content-center" style="overflow-x: hidden;">
-            <div class="card card shadow text-center align-items-center p-5" data-aos="fade-right"
-                data-aos-duration="1500">
-                <img src="./asset//img/icon-3.png" style="filter: brightness(1) invert(1);" alt="">
-                <p>Resepsi Pernikahan :</p>
-                <span class="text-center">
-                    Minggu, 5 Desember 2021 <br>
-                    Pukul : 10.00 - 11.30 WIB (Sesi 1)<br>
-                    Ponyo Resto & Wedding
-                </span>
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-up">
+                <h4 class="title-serif">Awal Bertemu</h4>
+                <p>Berawal dari pertemuan sederhana, kami mulai saling mengenal dan berbagi cerita. Waktu mengantarkan kami pada kenyamanan yang tak terduga.</p>
+            </div>
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                <h4 class="title-serif">Menyatakan Cinta</h4>
+                <p>Setelah melewati banyak momen berharga bersama, kami menyadari bahwa kami memiliki tujuan dan harapan yang sama untuk masa depan.</p>
+            </div>
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                <h4 class="title-serif">Lamaran</h4>
+                <p>Dengan restu kedua orang tua, kami mengikat janji untuk melangkah ke jenjang yang lebih serius, mempersiapkan hari bahagia kami.</p>
             </div>
         </div>
     </div>
 
-    <div class="card-wrapper py-3">
-        <div class="container d-flex justify-content-center" style="overflow-x: hidden;">
-            <div class="card card shadow text-center align-items-center p-5" data-aos="fade-left"
-                data-aos-duration="1500">
-                <img src="./asset//img/icon-4.png" width="100" alt="">
-                <p>Lihat Lokasi :</p>
-                <p>Ponyo Resto & Wedding</p>
-                <p> Jl. Raya Tagog Cinunuk No.186, Cinunuk, Cileunyi, Bandung, Jawa Barat 40624</p>
-                <button class="btn border-1 border-dark ">
-                    <a href="https://g.page/ponyocinunuk?share" style="text-decoration: none; color: black;">
-                        View Map
-                    </a>
-                </button>
-            </div>
+    <div class="container py-5 text-center">
+        <h2 class="title-script mb-4" data-aos="fade-up">Dress Code</h2>
+        <p data-aos="fade-up">Untuk menambah kesan dalam momen bahagia kami, tamu undangan dimohon hadir mengenakan pakaian dengan sentuhan warna berikut:</p>
+        
+        <div class="d-flex justify-content-center gap-3 mt-4" data-aos="zoom-in">
+            <div style="width: 45px; height: 45px; background-color: #c28b8a; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"></div>
+            <div style="width: 45px; height: 45px; background-color: #eadddb; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"></div>
+            <div style="width: 45px; height: 45px; background-color: #d1bfae; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"></div>
+            <div style="width: 45px; height: 45px; background-color: #8c7e7b; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"></div>
         </div>
     </div>
 
-    <div class="container my-5">
-        <div class="wedding-gift">
-            <div class="card shadow border-0">
-                <div class="card-image">
-                    <img src="./asset/img/2-min.jpg" class="w-100 rounded" alt="">
+    <div class="container py-5 mb-5 text-center">
+        <div class="card-elegant mx-auto" style="max-width: 600px; background-color: var(--primary-light); border: none;" data-aos="fade-up">
+            <h2 class="title-script mb-3" style="color: var(--text-dark);">RSVP</h2>
+            <p class="text-dark">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir. Mohon konfirmasi kehadiran melalui tautan berikut:</p>
+            
+            <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20konfirmasi%20kehadiran%20di%20acara%20pernikahan%20Amel%20%26%20Farhan.%0ANama:%20%0AKehadiran:%20(Hadir/Tidak%20Hadir)%0AJumlah%20Tamu:%20" target="_blank" class="btn btn-romantic mt-4" style="background-color: var(--text-dark) !important;">
+                <i class="fab fa-whatsapp me-2"></i> Konfirmasi Kehadiran
+            </a>
+        </div>
+    </div>
+
+    <div class="container py-5 text-center">
+        <h2 class="title-script mb-5" data-aos="fade-up">Galeri Bahagia</h2>
+        <div class="gallery-grid">
+            <img src="./asset/img/4-min.jpg" alt="Gallery" data-aos="zoom-in" data-aos-delay="100">
+            <img src="./asset/img/9-min.jpg" alt="Gallery" data-aos="zoom-in" data-aos-delay="200">
+            <img src="./asset/img/3-min.jpg" alt="Gallery" data-aos="zoom-in" data-aos-delay="300">
+            <img src="./asset/img/5-min.jpg" alt="Gallery" data-aos="zoom-in" data-aos-delay="400">
+        </div>
+    </div>
+
+    <div class="container py-5 my-5 text-center" data-aos="fade-up">
+        <div class="card-elegant mx-auto" style="max-width: 800px; background-color: #fff;">
+            <h2 class="title-script mb-3">Menuju Hari Bahagia</h2>
+            <p>Siang dan malam berganti, kami nantikan kehadiran keluarga dan sahabat untuk menjadi saksi ikrar janji suci kami.</p>
+            <div id="countdown" class="d-flex justify-content-center gap-3 mt-4 fs-3" style="color: var(--primary); font-family: 'Cormorant Garamond', serif; font-weight: bold;">
                 </div>
-                <div class="wedding-gift-text text-center text-muted mb-5">
-                    <p>Wedding gift</p>
-                    <span>
-                        Bagi Keluarga dan Sahabat <br>
-                        yang ingin mengirimkan hadiah, <br>
-                        silahkan mengirimkannya melalui :
-                    </span>
-                    <br>
-                    <button type="button" class="btn border mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="fas fa-credit-card"></i> Transfer
-                    </button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Silahkan transfer hadiah melalui
-                                    nomor rekening maupun dompet
-                                    digital berikut :
-                                </div>
-                                <img src="./asset/img/QR.jpeg" class="w-50 mx-auto my-3" alt="">
-                                <span>Atas Nama <br> Annisa Meilani</span>
-                                <img src="./asset/img/bca.png" class="w-25 mx-auto my-3" alt="">
-                                <span style="font-size: 20px; font-weight: 500; margin: 20px 0;">2831688876</span>
-                                <span class="mb-3">Sebelumnya, kami ucapkan terimakasih atas perhatian dan bentuk tanda
-                                    cinta
-                                    Bapak/Ibu/Saudara/i untuk kami</span>
-                            </div>
+        </div>
+    </div>
+
+    <div class="container py-5 text-center">
+        <h2 class="title-script mb-4" data-aos="fade-up">Wedding Gift</h2>
+        <p data-aos="fade-up">Bagi keluarga dan sahabat yang ingin mengirimkan tanda kasih, dapat melalui:</p>
+        
+        <div class="card-elegant mx-auto mt-4" style="max-width: 400px;" data-aos="flip-up">
+            <img src="./asset/img/bca.png" width="100" class="mb-3" alt="BCA">
+            <h4 class="fw-bold" style="letter-spacing: 2px;">283 168 8876</h4>
+            <p class="mb-4">a.n Annisa Meilani</p>
+            <img src="./asset/img/QR.jpeg" class="w-75 rounded shadow-sm" alt="QR Code">
+        </div>
+    </div>
+
+    <div class="container py-5">
+    <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="title-script">Informasi Tambahan</h2>
+        <p>Pertanyaan yang sering diajukan seputar acara</p>
+    </div>
+    <div class="row justify-content-center" data-aos="fade-up">
+        <div class="col-md-8">
+            <div class="accordion accordion-flush" id="faqAccordion">
+                <div class="accordion-item" style="background-color: transparent;">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" style="background-color: #fff; color: var(--text-dark); border-radius: 10px; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+                            <strong>Apakah tersedia area parkir?</strong>
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted">
+                            Ya, gedung memiliki area parkir yang cukup luas untuk mobil dan motor, serta dibantu oleh petugas parkir di lokasi.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item" style="background-color: transparent;">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" style="background-color: #fff; color: var(--text-dark); border-radius: 10px; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+                            <strong>Apakah ada ketentuan pakaian (Dress Code)?</strong>
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted">
+                            Untuk keselarasan acara, kami merekomendasikan pakaian dengan sentuhan warna Dusty Rose, Cream, atau warna pastel lainnya.
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="container">
-        <div class="wedding-gift">
-            <div class="card shadow border-0">
-                <div class="wedding-gift-text text-center text-muted my-5">
-                    <p>Menuju Hari Bahagia</p>
-                    <span class="px-2">
-                        Siang dan malam berganti begitu cepat, di antara saat-saat mendebarkan yang belum pernah kami
-                        rasakan sebelumnya. Kami nantikan kehadiran para keluarga dan sahabat, untuk menjadi saksi ikrar
-                        janji suci kami di hari yang bahagia.
-                    </span>
-                    <p class="mt-3" id="countdown"></p>
+    <footer class="py-5 mt-5" style="background-color: var(--text-dark); color: #fff;">
+        <div class="container text-center">
+            <p class="mb-4" style="color: var(--primary-light) !important;">Tanpa mengurangi rasa hormat, dimohon untuk tetap mematuhi protokol kesehatan:</p>
+            <div class="row justify-content-center gap-3 opacity-75">
+                <div class="col-4 col-md-2">
+                    <i class="fas fa-head-side-mask fs-2 mb-2"></i>
+                    <br><small>Gunakan Masker</small>
+                </div>
+                <div class="col-4 col-md-2">
+                    <i class="fas fa-hands-wash fs-2 mb-2"></i>
+                    <br><small>Cuci Tangan</small>
+                </div>
+                <div class="col-4 col-md-2">
+                    <i class="fas fa-people-arrows fs-2 mb-2"></i>
+                    <br><small>Jaga Jarak</small>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path fill="#dee2e6" fill-opacity="1"
-            d="M0,224L80,208C160,192,320,160,480,149.3C640,139,800,149,960,160C1120,171,1280,181,1360,186.7L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
-        </path>
-    </svg>
-    <div class="our-love-story text-center text-muted" style="overflow-x: hidden;">
-        <strong>Our Love Story</strong>
-        <br>
-        <img src="./asset/img/4-min.jpg" class="w-75 my-5 shadow" alt="">
-        <div class="container">
-            <i>“Pernikahan Bahagia Bukan Tanpa Kesalahan, tapi Selalu Tersedia Pengampunan” </i> <br>
-            <p>Kalimat itu yang akan menjadi fondasi kami kelak dalam menjalani rumah tangga.</p>
-
-            <p>Banyak hal yang kami lewati, membuat kami memahami bahwa, Dua manusia yang berbeda menyamakan satu
-                persepsi
-                tidaklah mudah. Butuh kedewasaan untuk bisa mendengarkan dan mau mengerti. Butuh kedewasaan untuk
-                menjelaskan tanpa menyerang. Butuh kecerdasan memilih waktu, kata dan intonasi bicara. Menjelaskan
-                detail
-                perasaan kita tanpa menyakiti.</p>
-
-            <p>Karna pasangan yang paling berbahagia adalah pasangan yang berjalan diatas dasar yang benar yaitu saling
-                mengasihi.. </p>
-
-            <p>Menutup 2021 dengan menjadi sepasang suami istri adalah sebuah anugerah indah yang Tuhan ijinkan terjadi
-                dalam hidup kami berdua. </p>
-
-            <p>Hati yang selalu bersyukur adalah perasaan yang tepat untuk hal-hal yang telah terjadi, sedang terjadi
-                dan akan terjadi.. </p>
-
-            <p>Sampai jumpa di hari bahagia kami…</p>
-
-            <p>Amel & Farhan</p>
-            <strong class="mt-3">Our Galery</strong>
-        </div>
-        <img src="./asset/img/9-min.jpg" class="w-75 my-5 shadow" alt="" data-aos="fade-right" data-aos-duration="1000">
-        <img src="./asset/img/3-min.jpg" class="w-75 my-5 shadow" alt="" data-aos="fade-left" data-aos-duration="1000">
-        <img src="./asset/img/5-min.jpg" class="w-75 my-5 shadow" alt="" data-aos="fade-right" data-aos-duration="1000">
-        <img src="./asset/img/6-min.jpg" class="w-75 my-5 shadow" alt="" data-aos="fade-left" data-aos-duration="1000">
-    </div>
-
-    <footer class="text-center  my-5">
-        <div class="container">
-            <span>Tanpa Mengurangi Rasa Hormat Kami, Di Masa Pandemi Dimohon Untuk</span>
-            <div class="row align-items-center my-2 d-flex justify-content-around">
-                <div class="col-md-3">
-                    <img src="./asset/img/1.png" class="w-50" alt=""><br>
-                    <small class="text-muted">Gunakan Masker</small>
-                </div>
-                <div class="col-md-3">
-                    <img src="./asset/img/2.png" class="w-50" alt=""><br>
-                    <small class="text-muted">Cuci tangan menggunakan sabun</small>
-                </div>
-                <div class="col-md-3">
-                    <img src="./asset/img/3.png" class="w-50" alt=""><br>
-                    <small class="text-muted">Cek suhu tubuh</small>
-                </div>
-            </div>
-            <div class="row align-items-center justify-content-center my-2">
-                <div class="col-md-3">
-                    <img src="./asset/img/4.png" class="w-50" alt=""><br>
-                    <small class="text-muted">Jaga jarak</small>
-                </div>
-                <div class="col-md-3">
-                    <img src="./asset/img/5.png" class="w-50" alt=""><br>
-                    <small class="text-muted">Tidak Bersalaman</small>
-                </div>
-            </div>
+            
+            <h1 class="title-script mt-5" style="font-size: 3rem; color: var(--primary-light);">Terima Kasih</h1>
         </div>
     </footer>
 
-    <div class="card-wrapper d-flex align-items-center justify-content-center"
-        style="font-family: 'Dancing Script', cursive; font-size: 25px; height: 300px;">
-        <p>terimakasih</p>
-    </div>
-    <!-- Script -->
 
     <script>
-        var myAudio = document.getElementById("myAudio")
-        var isPlaying = false
-        function togglePlay(){
+        var myAudio = document.getElementById("myAudio");
+        var audioControl = document.getElementById("audioControl");
+        var isPlaying = false;
+
+        function openInvitation(){
             myAudio.play();
-            terakhir = document.getElementById("box");
-            terakhir.classList.add('hide')
+            isPlaying = true;
+            document.getElementById("box").classList.add('hide');
+            audioControl.style.display = "flex"; 
+            
+            setTimeout(() => {
+                AOS.refresh();
+            }, 500);
         }
+
+        function toggleAudio() {
+            if (isPlaying) {
+                myAudio.pause();
+                audioControl.classList.add("audio-paused");
+                audioControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            } else {
+                myAudio.play();
+                audioControl.classList.remove("audio-paused");
+                audioControl.innerHTML = '<i class="fas fa-music"></i>';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Countdown untuk tahun 2026 (biar angkanya masih jalan buat simulasi klien lu)
+        var countDownDate = new Date("Dec 5, 2026 07:00:00").getTime();
+
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = 
+                "<div>" + days + "<br><small class='fs-6 text-muted'>Hari</small></div> : " +
+                "<div>" + hours + "<br><small class='fs-6 text-muted'>Jam</small></div> : " +
+                "<div>" + minutes + "<br><small class='fs-6 text-muted'>Menit</small></div> : " +
+                "<div>" + seconds + "<br><small class='fs-6 text-muted'>Detik</small></div>";
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "Hari Bahagia Telah Tiba!";
+            }
+        }, 1000);
     </script>
 
-    <script src="./asset/script/index.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init();
+        AOS.init({
+            once: true,
+            offset: 50
+        });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
-
-
-
-
-
-
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
 </body>
-
 </html>
