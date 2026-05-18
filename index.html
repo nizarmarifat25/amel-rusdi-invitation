@@ -89,6 +89,8 @@
                 radial-gradient(ellipse at bottom right, rgba(201, 169, 110, 0.1) 0%, transparent 55%),
                 var(--bg);
             padding: 2rem;
+            overflow: hidden;
+            /* ← fix horizontal scroll */
         }
 
         .cover-card {
@@ -1152,6 +1154,11 @@
 
             .count-num {
                 font-size: 1.8rem;
+            }
+
+            /* ← fix cover padding on mobile */
+            .cover-card {
+                padding: 2.5rem 1.5rem;
             }
         }
 
