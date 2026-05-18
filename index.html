@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <title>Undangan Pernikahan - Amelia & Rusdi</title>
+    <title>Undangan Pernikahan - Amel & Rusdi</title>
 
     <style>
         :root {
@@ -188,7 +188,7 @@
         .hero-section {
             height: 100vh;
             background: linear-gradient(160deg, rgba(58, 46, 43, 0.55) 0%, rgba(58, 46, 43, 0.35) 100%),
-                url('./asset/img/pre5.jpeg') center/cover no-repeat;
+                url('./asset/img/pre8.jpeg') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1058,7 +1058,7 @@
                         <span></span>
                     </div>
                     <p style="font-size: 0.88rem;">Putri dari<br>
-                        <strong style="color: var(--text-dark);">Bpk. Rendi &amp; Ibu Nia</strong>
+                        <strong style="color: var(--text-dark);">Bpk. Rendi &amp; Ibu Nia Siti Munijar</strong>
                     </p>
                 </div>
 
@@ -1070,14 +1070,14 @@
                     <div class="person-photo-wrap mb-4">
                         <img src="./asset/img/crop2.jpeg" alt="Rusdi">
                     </div>
-                    <h3 class="person-name">Rusdi</h3>
+                    <h3 class="person-name">Rusdiana Yulio</h3>
                     <div class="gold-divider">
                         <span></span>
                         <i class="fas fa-heart" style="color: var(--primary); font-size: 0.7rem;"></i>
                         <span></span>
                     </div>
                     <p style="font-size: 0.88rem;">Putra dari<br>
-                        <strong style="color: var(--text-dark);">Bpk. Ahmad &amp; Ibu Sari</strong>
+                        <strong style="color: var(--text-dark);">Bpk. Ujang Firmansyah &amp; Ibu Tiur Andini</strong>
                     </p>
                 </div>
             </div>
@@ -1101,8 +1101,8 @@
 
                         <div
                             style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin: 1rem 0 1.2rem;">
-                            <span class="acara-time" style="margin:0;">Akad · 07.00 WIB</span>
-                            <span class="acara-time" style="margin:0;">Resepsi · 10.00 — Selesai</span>
+                            <span class="acara-time" style="margin:0;">Akad · 08.00 WIB</span>
+                            <span class="acara-time" style="margin:0;">Resepsi · 11.00 — Selesai</span>
                         </div>
 
                         <div class="gold-divider" style="margin: 1rem 0;">
@@ -1258,11 +1258,9 @@
                 <div class="col-md-5">
                     <div class="gift-card">
                         <img src="./asset/img/bca.png" class="gift-bank-logo" alt="BCA">
-                        <div class="gift-number mt-2">283 168 8876</div>
+                        <div class="gift-number mt-2">283 315 4681</div>
                         <p style="font-size: 0.82rem; margin-top: 0.3rem;">a.n Amelia Maulani</p>
-                        <div class="gold-divider"><span></span><i class="fas fa-qrcode"></i><span></span></div>
-                        <img src="./asset/img/QR.jpeg" alt="QR Code"
-                            style="width: 65%; border-radius: 12px; border: 1px solid var(--primary-light);">
+
                     </div>
                 </div>
             </div>
@@ -1287,7 +1285,8 @@
                                 </button>
                             </h2>
                             <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">Ya, tempat kami memiliki area parkir yang cukup luas untuk mobil dan
+                                <div class="accordion-body">Ya, tempat kami memiliki area parkir yang cukup luas untuk
+                                    mobil dan
                                     motor, serta dibantu petugas parkir di lokasi.</div>
                             </div>
                         </div>
@@ -1451,48 +1450,88 @@
         });
 
         // Ucapan
-        var ucapanData = [
-            { name: "Keluarga Besar", attend: "hadir", msg: "Selamat menempuh hidup baru, semoga menjadi keluarga yang sakinah, mawaddah, warahmah. Bahagia selalu Amel & Rusdi! 🤍" },
-        ];
+        const API_URL = 'https://be-undangan-chi.vercel.app/api/ucapan';
 
-        function renderUcapan() {
+        function renderUcapan(data) {
             var list = document.getElementById("ucapan-list");
-            var empty = document.getElementById("uc-empty");
-            if (ucapanData.length === 0) { empty.style.display = "block"; return; }
-            empty.style.display = "none";
-            list.innerHTML = '<div class="ucapan-empty" id="uc-empty" style="display:none;"></div>';
-            ucapanData.slice().reverse().forEach(function (u) {
-                var attendLabel = u.attend === "hadir" ? "Hadir" : u.attend === "mungkin" ? "Mungkin Hadir" : "Tidak Hadir";
-                var attendClass = u.attend === "hadir" ? "hadir" : u.attend === "mungkin" ? "mungkin" : "tidak";
+
+            if (!data || data.length === 0) {
+                list.innerHTML = '<div class="ucapan-empty" id="uc-empty" style="display:block;">Belum ada ucapan. Jadilah yang pertama! 🌸</div>';
+                return;
+            }
+
+            list.innerHTML = '<div class="ucapan-empty" id="uc-empty" style="display:none;">Belum ada ucapan. Jadilah yang pertama! 🌸</div>';
+
+            data.forEach(function (u) {
+                var attendLabel = u.kehadiran === "hadir" ? "Hadir" : u.kehadiran === "mungkin" ? "Mungkin Hadir" : "Tidak Hadir";
+                var attendClass = u.kehadiran === "hadir" ? "hadir" : u.kehadiran === "mungkin" ? "mungkin" : "tidak";
+
                 var el = document.createElement("div");
-                el.className = "ucapan-bubble";
+                el.className = "ucapan-bubble mb-2";
                 el.innerHTML = '<span class="uc-quote">"</span>'
-                    + '<div class="uc-name">' + escHtml(u.name) + '</div>'
+                    + '<div class="uc-name">' + escHtml(u.nama) + '</div>'
                     + '<span class="uc-attend ' + attendClass + '">' + attendLabel + '</span>'
-                    + '<p class="uc-msg">' + escHtml(u.msg) + '</p>';
+                    + '<p class="uc-msg">' + escHtml(u.pesan) + '</p>';
                 list.appendChild(el);
             });
         }
 
         function escHtml(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
 
-        function kirimUcapan() {
+        // Fetch data dari database saat web pertama dibuka
+        async function fetchUcapan() {
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                renderUcapan(data);
+            } catch (error) {
+                console.error('Gagal mengambil ucapan:', error);
+            }
+        }
+
+        // Fungsi kirim ke database
+        async function kirimUcapan() {
             var name = document.getElementById("uc-name").value.trim();
             var attend = document.getElementById("uc-attend").value;
             var msg = document.getElementById("uc-msg").value.trim();
+
             if (!name) { alert("Mohon isi nama kamu dulu ya 🙏"); return; }
             if (!attend) { alert("Mohon pilih konfirmasi kehadiran ya 🙏"); return; }
             if (!msg) { alert("Mohon tulis ucapannya dulu ya 🌸"); return; }
-            ucapanData.push({ name: name, attend: attend, msg: msg });
-            renderUcapan();
-            document.getElementById("uc-name").value = "";
-            document.getElementById("uc-attend").value = "";
-            document.getElementById("uc-msg").value = "";
-            var list = document.getElementById("ucapan-list");
-            list.scrollTop = 0;
+
+            const submitBtn = document.querySelector('button[onclick="kirimUcapan()"]');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Mengirim...';
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nama: name, kehadiran: attend, pesan: msg })
+                });
+
+                if (response.ok) {
+                    // Kalo sukses, panggil fetchUcapan buat update list terbaru dari DB
+                    await fetchUcapan();
+
+                    document.getElementById("uc-name").value = "";
+                    document.getElementById("uc-attend").value = "";
+                    document.getElementById("uc-msg").value = "";
+                    var list = document.getElementById("ucapan-list");
+                    list.scrollTop = 0;
+                } else {
+                    alert("Gagal mengirim ucapan, coba lagi nanti.");
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert("Terjadi kesalahan jaringan.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i> Kirim Ucapan';
+            }
         }
 
-        renderUcapan();
+        fetchUcapan();
         var target = new Date("June 14, 2026 07:00:00").getTime();
         function tick() {
             var now = Date.now();
