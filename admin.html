@@ -1,502 +1,818 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin — Undangan Amel & Rusdi</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --primary: #b07d6e;
-    --primary-light: #ecddd8;
-    --primary-dark: #8a5e52;
-    --gold: #c9a96e;
-    --gold-light: #f0e0c4;
-    --bg: #faf8f5;
-    --bg-warm: #f5f0ea;
-    --text-dark: #3a2e2b;
-    --text-mid: #6b5750;
-    --text-light: #9e8880;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Jost', sans-serif; background: var(--bg); color: var(--text-dark); min-height: 100vh; }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin — Undangan Amel & Rusdi</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;500&family=Jost:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #b07d6e;
+            --primary-light: #ecddd8;
+            --primary-dark: #8a5e52;
+            --gold: #c9a96e;
+            --gold-light: #f0e0c4;
+            --bg: #faf8f5;
+            --bg-warm: #f5f0ea;
+            --text-dark: #3a2e2b;
+            --text-mid: #6b5750;
+            --text-light: #9e8880;
+        }
 
-  /* ── LOGIN GATE ── */
-  #login-gate {
-    position: fixed; inset: 0; z-index: 9999;
-    background: var(--bg);
-    display: flex; align-items: center; justify-content: center;
-    padding: 1.5rem;
-  }
-  #login-gate.hidden { display: none; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  .login-card {
-    background: #fff; border: 1px solid var(--primary-light);
-    border-radius: 24px; padding: 3rem 2.5rem;
-    max-width: 380px; width: 100%; text-align: center;
-    box-shadow: 0 20px 60px rgba(176,125,110,0.12);
-    position: relative; overflow: hidden;
-  }
-  .login-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-    background: linear-gradient(90deg, var(--primary-light), var(--gold), var(--primary-light));
-  }
-  .login-title {
-    font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: 2rem; color: var(--primary); margin-bottom: 0.2rem;
-  }
-  .login-sub {
-    font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--text-light); margin-bottom: 2rem;
-  }
-  .login-input {
-    width: 100%; border: 1.5px solid var(--primary-light); border-radius: 12px;
-    padding: 12px 16px; font-family: 'Jost', sans-serif; font-size: 0.95rem;
-    color: var(--text-dark); background: var(--bg); outline: none;
-    transition: border-color 0.3s; text-align: center; letter-spacing: 4px;
-    margin-bottom: 1rem;
-  }
-  .login-input:focus { border-color: var(--primary); background: #fff; }
-  .login-input::placeholder { letter-spacing: 1px; color: var(--text-light); }
-  .login-btn {
-    width: 100%; background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: #fff; border: none; border-radius: 50px; padding: 13px;
-    font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 3px;
-    text-transform: uppercase; cursor: pointer; transition: all 0.3s;
-  }
-  .login-btn:hover { opacity: 0.88; transform: translateY(-2px); }
-  .login-error {
-    color: #c62828; font-size: 0.78rem; margin-top: 0.8rem;
-    display: none;
-  }
-  .login-error.show { display: block; }
+        body {
+            font-family: 'Jost', sans-serif;
+            background: var(--bg);
+            color: var(--text-dark);
+            min-height: 100vh;
+        }
 
-  /* ── ADMIN PANEL ── */
-  #admin-panel { display: none; padding: 0 0 4rem; }
-  #admin-panel.show { display: block; }
+        /* ── LOGIN GATE ── */
+        #login-gate {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
 
-  .topbar {
-    background: #fff; border-bottom: 1px solid var(--primary-light);
-    padding: 1rem 1.5rem; display: flex; align-items: center;
-    justify-content: space-between; position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 2px 12px rgba(176,125,110,0.06);
-  }
-  .topbar-title {
-    font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: 1.4rem; color: var(--primary);
-  }
-  .topbar-sub {
-    font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 3px;
-    color: var(--text-light); text-transform: uppercase;
-  }
-  .logout-btn {
-    background: transparent; border: 1.5px solid var(--primary-light);
-    border-radius: 8px; padding: 6px 14px; font-family: 'Cinzel', serif;
-    font-size: 0.58rem; letter-spacing: 2px; color: var(--text-light);
-    cursor: pointer; transition: all 0.2s;
-  }
-  .logout-btn:hover { border-color: var(--primary); color: var(--primary); }
+        #login-gate.hidden {
+            display: none;
+        }
 
-  .admin-body { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem 0; }
+        .login-card {
+            background: #fff;
+            border: 1px solid var(--primary-light);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(176, 125, 110, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
 
-  /* Stats */
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 2rem; }
-  .stat-card {
-    background: #fff; border: 1px solid var(--primary-light); border-radius: 16px;
-    padding: 1.2rem 1rem; text-align: center;
-  }
-  .stat-num {
-    font-family: 'Cormorant Garamond', serif; font-weight: 600;
-    font-size: 2rem; color: var(--primary); line-height: 1;
-  }
-  .stat-label {
-    font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--text-light); margin-top: 4px;
-  }
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-light), var(--gold), var(--primary-light));
+        }
 
-  /* Search + Filter */
-  .toolbar {
-    display: flex; gap: 10px; margin-bottom: 1.5rem; flex-wrap: wrap;
-  }
-  .search-wrap { position: relative; flex: 1; min-width: 200px; }
-  .search-wrap svg {
-    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
-    color: var(--text-light); width: 16px; height: 16px; pointer-events: none;
-  }
-  .search-input {
-    width: 100%; border: 1.5px solid var(--primary-light); border-radius: 12px;
-    padding: 10px 12px 10px 38px; font-family: 'Jost', sans-serif; font-size: 0.88rem;
-    color: var(--text-dark); background: #fff; outline: none; transition: border-color 0.3s;
-  }
-  .search-input:focus { border-color: var(--primary); }
-  .filter-select {
-    border: 1.5px solid var(--primary-light); border-radius: 12px;
-    padding: 10px 36px 10px 14px; font-family: 'Cinzel', serif; font-size: 0.6rem;
-    letter-spacing: 1px; color: var(--text-mid); background: #fff; outline: none;
-    cursor: pointer; transition: border-color 0.3s;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239e8880' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 12px center;
-  }
-  .filter-select:focus { border-color: var(--primary); }
+        .login-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+        }
 
-  /* Guest list */
-  .group-label {
-    font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 4px;
-    text-transform: uppercase; color: var(--text-light);
-    border-bottom: 1px solid var(--primary-light); padding-bottom: 0.5rem;
-    margin: 1.8rem 0 0.8rem;
-  }
-  .guest-list { display: flex; flex-direction: column; gap: 8px; }
+        .login-sub {
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
 
-  .guest-item {
-    background: #fff; border: 1px solid var(--primary-light); border-radius: 14px;
-    padding: 0.85rem 1.1rem; display: flex; align-items: center; gap: 0.8rem;
-    transition: box-shadow 0.2s, border-color 0.2s;
-  }
-  .guest-item:hover { box-shadow: 0 4px 16px rgba(176,125,110,0.1); border-color: var(--primary); }
-  .guest-item.hidden-item { display: none; }
+        .login-input {
+            width: 100%;
+            border: 1.5px solid var(--primary-light);
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            background: var(--bg);
+            outline: none;
+            transition: border-color 0.3s;
+            text-align: center;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+        }
 
-  .guest-name {
-    font-family: 'Cormorant Garamond', serif; font-weight: 600;
-    font-size: 1rem; color: var(--text-dark); min-width: 120px; flex-shrink: 0;
-  }
-  .guest-group-tag {
-    font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 1.5px;
-    text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
-    flex-shrink: 0;
-  }
-  .tag-sd { background: #e3f2fd; color: #1565c0; }
-  .tag-alumni { background: #f3e5f5; color: #6a1b9a; }
-  .tag-pasargati { background: #fce4ec; color: #880e4f; }
-  .tag-smp { background: #e8f5e9; color: #1b5e20; }
-  .tag-lainnya { background: #fff8e1; color: #e65100; }
+        .login-input:focus {
+            border-color: var(--primary);
+            background: #fff;
+        }
 
-  .guest-url {
-    flex: 1; font-size: 0.72rem; color: var(--text-light);
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    font-family: monospace;
-  }
+        .login-input::placeholder {
+            letter-spacing: 1px;
+            color: var(--text-light);
+        }
 
-  .btn-copy {
-    background: var(--primary-light); color: var(--primary-dark);
-    border: none; border-radius: 8px; padding: 6px 12px;
-    font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 1.5px;
-    cursor: pointer; white-space: nowrap; transition: all 0.2s; flex-shrink: 0;
-  }
-  .btn-copy:hover { background: var(--primary); color: #fff; }
-  .btn-copy.copied { background: #e8f5e9; color: #388e3c; }
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 13px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
 
-  .btn-wa {
-    background: #25d366; color: #fff; border: none; border-radius: 8px;
-    padding: 6px 12px; font-size: 0.75rem; cursor: pointer;
-    white-space: nowrap; text-decoration: none; flex-shrink: 0;
-    transition: background 0.2s;
-  }
-  .btn-wa:hover { background: #1ebe5d; color: #fff; }
+        .login-btn:hover {
+            opacity: 0.88;
+            transform: translateY(-2px);
+        }
 
-  /* No results */
-  .no-results {
-    text-align: center; padding: 3rem 1rem; color: var(--text-light);
-    font-style: italic; display: none;
-  }
-  .no-results.show { display: block; }
+        .login-error {
+            color: #c62828;
+            font-size: 0.78rem;
+            margin-top: 0.8rem;
+            display: none;
+        }
 
-  /* Copy all */
-  .bottom-bar {
-    max-width: 800px; margin: 1.5rem auto 0; padding: 0 1.5rem;
-    display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap;
-  }
-  .btn-copy-all {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: #fff; border: none; border-radius: 10px; padding: 10px 22px;
-    font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 2px;
-    cursor: pointer; transition: all 0.25s;
-  }
-  .btn-copy-all:hover { opacity: 0.88; }
-  .btn-copy-visible {
-    background: #fff; color: var(--primary); border: 1.5px solid var(--primary);
-    border-radius: 10px; padding: 10px 22px;
-    font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 2px;
-    cursor: pointer; transition: all 0.25s;
-  }
-  .btn-copy-visible:hover { background: var(--primary-light); }
+        .login-error.show {
+            display: block;
+        }
 
-  @media (max-width: 520px) {
-    .stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .stat-num { font-size: 1.6rem; }
-    .guest-item { flex-wrap: wrap; }
-    .guest-url { width: 100%; order: 5; }
-    .guest-name { min-width: unset; }
-  }
-</style>
+        /* ── ADMIN PANEL ── */
+        #admin-panel {
+            display: none;
+            padding: 0 0 4rem;
+        }
+
+        #admin-panel.show {
+            display: block;
+        }
+
+        .topbar {
+            background: #fff;
+            border-bottom: 1px solid var(--primary-light);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(176, 125, 110, 0.06);
+        }
+
+        .topbar-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+
+        .topbar-sub {
+            font-family: 'Cinzel', serif;
+            font-size: 0.58rem;
+            letter-spacing: 3px;
+            color: var(--text-light);
+            text-transform: uppercase;
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1.5px solid var(--primary-light);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.58rem;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .admin-body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 0;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: #fff;
+            border: 1px solid var(--primary-light);
+            border-radius: 16px;
+            padding: 1.2rem 1rem;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 2rem;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.55rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        /* Search + Filter */
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .search-wrap {
+            position: relative;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .search-wrap svg {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            width: 16px;
+            height: 16px;
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            border: 1.5px solid var(--primary-light);
+            border-radius: 12px;
+            padding: 10px 12px 10px 38px;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.88rem;
+            color: var(--text-dark);
+            background: #fff;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+        }
+
+        .filter-select {
+            border: 1.5px solid var(--primary-light);
+            border-radius: 12px;
+            padding: 10px 36px 10px 14px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            color: var(--text-mid);
+            background: #fff;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.3s;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239e8880' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+        }
+
+        .filter-select:focus {
+            border-color: var(--primary);
+        }
+
+        /* Guest list */
+        .group-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            border-bottom: 1px solid var(--primary-light);
+            padding-bottom: 0.5rem;
+            margin: 1.8rem 0 0.8rem;
+        }
+
+        .guest-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .guest-item {
+            background: #fff;
+            border: 1px solid var(--primary-light);
+            border-radius: 14px;
+            padding: 0.85rem 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .guest-item:hover {
+            box-shadow: 0 4px 16px rgba(176, 125, 110, 0.1);
+            border-color: var(--primary);
+        }
+
+        .guest-item.hidden-item {
+            display: none;
+        }
+
+        .guest-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-dark);
+            min-width: 120px;
+            flex-shrink: 0;
+        }
+
+        .guest-group-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 0.55rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+            flex-shrink: 0;
+        }
+
+        .tag-sd {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .tag-alumni {
+            background: #f3e5f5;
+            color: #6a1b9a;
+        }
+
+        .tag-pasargati {
+            background: #fce4ec;
+            color: #880e4f;
+        }
+
+        .tag-smp {
+            background: #e8f5e9;
+            color: #1b5e20;
+        }
+
+        .tag-lainnya {
+            background: #fff8e1;
+            color: #e65100;
+        }
+
+        .guest-url {
+            flex: 1;
+            font-size: 0.72rem;
+            color: var(--text-light);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-family: monospace;
+        }
+
+        .btn-copy {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.55rem;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .btn-copy:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-copy.copied {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+
+        .btn-wa {
+            background: #25d366;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            white-space: nowrap;
+            text-decoration: none;
+            flex-shrink: 0;
+            transition: background 0.2s;
+        }
+
+        .btn-wa:hover {
+            background: #1ebe5d;
+            color: #fff;
+        }
+
+        /* No results */
+        .no-results {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-light);
+            font-style: italic;
+            display: none;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        /* Copy all */
+        .bottom-bar {
+            max-width: 800px;
+            margin: 1.5rem auto 0;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-copy-all {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 22px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .btn-copy-all:hover {
+            opacity: 0.88;
+        }
+
+        .btn-copy-visible {
+            background: #fff;
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+            border-radius: 10px;
+            padding: 10px 22px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .btn-copy-visible:hover {
+            background: var(--primary-light);
+        }
+
+        @media (max-width: 520px) {
+            .stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+
+            .stat-num {
+                font-size: 1.6rem;
+            }
+
+            .guest-item {
+                flex-wrap: wrap;
+            }
+
+            .guest-url {
+                width: 100%;
+                order: 5;
+            }
+
+            .guest-name {
+                min-width: unset;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<!-- LOGIN GATE -->
-<div id="login-gate">
-  <div class="login-card">
-    <div class="login-title">Admin Panel</div>
-    <div class="login-sub">Amel &amp; Rusdi · 14.06.2026</div>
-    <input type="password" class="login-input" id="pw-input" placeholder="Masukkan password" onkeydown="if(event.key==='Enter') doLogin()">
-    <button class="login-btn" onclick="doLogin()">Masuk</button>
-    <div class="login-error" id="login-error">❌ Password salah, coba lagi</div>
-  </div>
-</div>
-
-<!-- ADMIN PANEL -->
-<div id="admin-panel">
-  <div class="topbar">
-    <div>
-      <div class="topbar-title">Daftar Tamu Undangan</div>
-      <div class="topbar-sub">Amel &amp; Rusdi · 14.06.2026</div>
-    </div>
-    <button class="logout-btn" onclick="doLogout()">Keluar</button>
-  </div>
-
-  <div class="admin-body">
-    <div class="stats">
-      <div class="stat-card">
-        <div class="stat-num" id="stat-total">0</div>
-        <div class="stat-label">Total Tamu</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num" id="stat-groups">5</div>
-        <div class="stat-label">Kelompok</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num" id="stat-visible">0</div>
-        <div class="stat-label">Ditampilkan</div>
-      </div>
+    <!-- LOGIN GATE -->
+    <div id="login-gate">
+        <div class="login-card">
+            <div class="login-title">Admin Panel</div>
+            <div class="login-sub">Amel &amp; Rusdi · 14.06.2026</div>
+            <input type="password" class="login-input" id="pw-input" placeholder="Masukkan password"
+                onkeydown="if(event.key==='Enter') doLogin()">
+            <button class="login-btn" onclick="doLogin()">Masuk</button>
+            <div class="login-error" id="login-error">❌ Password salah, coba lagi</div>
+        </div>
     </div>
 
-  <div class="toolbar">
-      <div class="search-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-        </svg>
-        <input type="text" class="search-input" id="search-input" placeholder="Cari nama tamu..." oninput="doFilter()">
-      </div>
-      <select class="filter-select" id="filter-group" onchange="doFilter()">
-        <option value="">Semua Kelompok</option>
-        <option value="sd">SD</option>
-        <option value="smp">SMP</option>
-        <option value="alumni">Alumni CV Intan</option>
-        <option value="pasargati">Pasargati</option>
-        <option value="lainnya">Lainnya</option>
-      </select> 
+    <!-- ADMIN PANEL -->
+    <div id="admin-panel">
+        <div class="topbar">
+            <div>
+                <div class="topbar-title">Daftar Tamu Undangan</div>
+                <div class="topbar-sub">Amel &amp; Rusdi · 14.06.2026</div>
+            </div>
+            <button class="logout-btn" onclick="doLogout()">Keluar</button>
+        </div>
+
+        <div class="admin-body">
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-num" id="stat-total">0</div>
+                    <div class="stat-label">Total Tamu</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num" id="stat-groups">5</div>
+                    <div class="stat-label">Kelompok</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num" id="stat-visible">0</div>
+                    <div class="stat-label">Ditampilkan</div>
+                </div>
+            </div>
+
+            <div class="toolbar">
+                <div class="search-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
+                    <input type="text" class="search-input" id="search-input" placeholder="Cari nama tamu..."
+                        oninput="doFilter()">
+                </div>
+                <select class="filter-select" id="filter-group" onchange="doFilter()">
+                    <option value="">Semua Kelompok</option>
+                    <option value="sd">SD</option>
+                    <option value="smp">SMP</option>
+                    <option value="alumni">Alumni CV Intan</option>
+                    <option value="pasargati">Pasargati</option>
+                    <option value="lainnya">Lainnya</option>
+                </select>
+            </div>
+
+            <div id="guest-container"></div>
+            <div class="no-results" id="no-results">Tidak ada tamu yang cocok dengan pencarian 🔍</div>
+        </div>
+
+        <div id="guest-container"></div>
+        <div class="no-results" id="no-results">Tidak ada tamu yang cocok dengan pencarian 🔍</div>
     </div>
 
-    <div id="guest-container"></div>
-    <div class="no-results" id="no-results">Tidak ada tamu yang cocok dengan pencarian 🔍</div>
-  </div>
+    <div class="bottom-bar">
+        <button class="btn-copy-visible" onclick="copyVisible()">📋 Salin yang Tampil</button>
+        <button class="btn-copy-all" onclick="copyAll()">📋 Salin Semua Link</button>
+    </div>
+    </div>
 
-    <div id="guest-container"></div>
-    <div class="no-results" id="no-results">Tidak ada tamu yang cocok dengan pencarian 🔍</div>
-  </div>
+    <script>
+        // ── KONFIGURASI ──
+        const PASSWORD = "amelrusdi2026"; // ganti password di sini
+        const BASE_URL = "https://amel-rusdi-invitation.vercel.app/";
 
-  <div class="bottom-bar">
-    <button class="btn-copy-visible" onclick="copyVisible()">📋 Salin yang Tampil</button>
-    <button class="btn-copy-all" onclick="copyAll()">📋 Salin Semua Link</button>
-  </div>
-</div>
+        const GROUPS = [
+            {
+                id: "sd",
+                label: "SD",
+                tagClass: "tag-sd",
+                guests: ["Winda", "Nisa", "Firly", "Dila", "Agnia", "Qanaya", "Hilman", "Abil", "Heldan", "Marsel", "Rahma", "Ajeng", "Erika"]
+            },
+            {
+                id: "smp",
+                label: "SMP",
+                tagClass: "tag-smp",
+                guests: ["Teh Ngatsnr", "Teh Risma", "Silvio", "Menur", "Atri", "Voni", "Bintang", "Lutria", "T. Farmi", "T. Nanay", "T. Fani", "Pika", "Mpitnur", "Deyu", "Alfiyah & Ilyas", "Putmey", "Nutsol", "Aini", "Silvi (Adik Kelas)", "Wira", "Nanda Aprilian", "Mira", "Danar", "Selyna Mabila"]
+            },
+            {
+                id: "alumni",
+                label: "Alumni CV Intan",
+                tagClass: "tag-alumni",
+                guests: ["Iki BF", "Epul", "Irman", "Bilal", "Pandul"]
+            },
+            {
+                id: "pasargati",
+                label: "Pasargati",
+                tagClass: "tag-pasargati",
+                guests: ["Sherlyn", "Sinta", "Dila", "Nova", "Nana", "T. Opi", "T. Ninin", "T. Ayu", "T. Nur", "T. Nur Bu Lyam", "Nanda", "Alicia", "T. Patih", "Usan"]
+            },
+            {
+                id: "lainnya",
+                label: "Lainnya",
+                tagClass: "tag-lainnya",
+                guests: ["Alkamilah", "Didah", "Damut", "Linda", "Nunung", "Rafa", "Laila Budi", "Marwah", "Apun", "Teh Piti", "Teh Hasni", "Teh Rida", "Teh Linea", "Teh Nelvici", "Mfik", "Teh Quro (Annisr Gia)", "Fahri Ali", "Aray", "Falwa", "Fastra", "Fauwasr", "Kamud", "Farhan Im", "Ilbs", "Saidah", "Dewi Laras", "Lara", "T. Nurul", "A. Qingim"]
+            }
+        ];
 
-<script>
-// ── KONFIGURASI ──
-const PASSWORD = "amelrusdi2026"; // ganti password di sini
-const BASE_URL = "https://amel-rusdi-invitation.vercel.app/";
+        // ── AUTH ──
+        function doLogin() {
+            const val = document.getElementById('pw-input').value;
+            if (val === PASSWORD) {
+                sessionStorage.setItem('admin_auth', '1');
+                document.getElementById('login-gate').classList.add('hidden');
+                document.getElementById('admin-panel').classList.add('show');
+                buildList();
+            } else {
+                const err = document.getElementById('login-error');
+                err.classList.add('show');
+                document.getElementById('pw-input').value = '';
+                document.getElementById('pw-input').focus();
+                setTimeout(() => err.classList.remove('show'), 2500);
+            }
+        }
 
-const GROUPS = [
-  {
-    id: "sd",
-    label: "SD",
-    tagClass: "tag-sd",
-    guests: ["Winda","Nisa","Firly","Dila","Agnia","Qanaya","Hilman","Abil","Heldan","Marsel","Rahma","Ajeng","Erika"]
-  },
-  {
-    id: "smp",
-    label: "SMP",
-    tagClass: "tag-smp",
-    guests: ["Teh Ngatsnr","Teh Risma","Silvio","Menur","Atri","Voni","Bintang","Lutria","T. Farmi","T. Nanay","T. Fani","Pika","Mpitnur","Deyu","Alfiyah & Ilyas","Putmey","Nutsol","Aini","Silvi (Adik Kelas)","Wira","Nanda Aprilian","Mira","Danar","Selyna Mabila"]
-  },
-  {
-    id: "alumni",
-    label: "Alumni CV Intan",
-    tagClass: "tag-alumni",
-    guests: ["Iki BF","Epul","Irman","Bilal","Pandul"]
-  },
-  {
-    id: "pasargati",
-    label: "Pasargati",
-    tagClass: "tag-pasargati",
-    guests: ["Sherlyn","Sinta","Dila","Nova","Nana","T. Opi","T. Ninin","T. Ayu","T. Nur","T. Nur Bu Lyam","Nanda","Alicia","T. Patih","Usan"]
-  },
-  {
-    id: "lainnya",
-    label: "Lainnya",
-    tagClass: "tag-lainnya",
-    guests: ["Alkamilah","Didah","Damut","Linda","Nunung","Rafa","Laila Budi","Marwah","Apun","Teh Piti","Teh Hasni","Teh Rida","Teh Linea","Teh Nelvici","Mfik","Teh Quro (Annisr Gia)","Fahri Ali","Aray","Falwa","Fastra","Fauwasr","Kamud","Farhan Im","Ilbs","Saidah","Dewi Laras","Lara","T. Nurul","A. Qingim"]
-  }
-];
+        function doLogout() {
+            sessionStorage.removeItem('admin_auth');
+            document.getElementById('login-gate').classList.remove('hidden');
+            document.getElementById('admin-panel').classList.remove('show');
+            document.getElementById('pw-input').value = '';
+        }
 
-// ── AUTH ──
-function doLogin() {
-  const val = document.getElementById('pw-input').value;
-  if (val === PASSWORD) {
-    sessionStorage.setItem('admin_auth', '1');
-    document.getElementById('login-gate').classList.add('hidden');
-    document.getElementById('admin-panel').classList.add('show');
-    buildList();
-  } else {
-    const err = document.getElementById('login-error');
-    err.classList.add('show');
-    document.getElementById('pw-input').value = '';
-    document.getElementById('pw-input').focus();
-    setTimeout(() => err.classList.remove('show'), 2500);
-  }
-}
+        function generateMessage(name, url) {
+            return `Assalamu'alaikum Warahmatullahi Wabarakatuh
+Salam Sejahtera ✨
 
-function doLogout() {
-  sessionStorage.removeItem('admin_auth');
-  document.getElementById('login-gate').classList.remove('hidden');
-  document.getElementById('admin-panel').classList.remove('show');
-  document.getElementById('pw-input').value = '';
-}
+Halo *${name}*, kami *Amel & Rusdi*.
 
-// Auto-login jika sudah auth di session
-if (sessionStorage.getItem('admin_auth') === '1') {
-  document.getElementById('login-gate').classList.add('hidden');
-  document.getElementById('admin-panel').classList.add('show');
-}
+Perjalanan cinta kami tumbuh dari sebuah cerita sederhana yang penuh rasa syukur, hingga akhirnya membawa kami pada titik ini. Atas izin dan rida-Nya, kami berdua kini siap melangkah bersama untuk mengikat janji suci di lembaran hidup yang baru.
 
-// ── BUILD LIST ──
-function makeUrl(name) {
-  return BASE_URL + "?to=" + encodeURIComponent(name);
-}
+Hari bahagia kami tentu akan terasa jauh lebih lengkap dan bermakna dengan kehadiranmu di sana. Dengan sepenuh hati, kami mengundangmu untuk hadir merayakan momen ini sekaligus memberikan doa restu bagi langkah awal petualangan hidup kami yang baru. 🤍
 
-function makeWaUrl(name) {
-  const url = makeUrl(name);
-  const msg = "Halo " + name + " 🌸\nKami mengundang kamu ke pernikahan Amel & Rusdi.\nBuka undangannya di sini ya:\n" + url;
-  return "https://wa.me/?text=" + encodeURIComponent(msg);
-}
+Silakan buka tautan di bawah ini untuk melihat detail undangan digital kami:
+${url}`;
+        }
 
-let allItems = []; // { el, name, groupId, groupLabel }
+        // Auto-login jika sudah auth di session
+        if (sessionStorage.getItem('admin_auth') === '1') {
+            document.getElementById('login-gate').classList.add('hidden');
+            document.getElementById('admin-panel').classList.add('show');
+        }
 
-function buildList() {
-  const container = document.getElementById('guest-container');
-  container.innerHTML = '';
-  allItems = [];
+        // ── BUILD LIST ──
+        function makeUrl(name) {
+            return BASE_URL + "?to=" + encodeURIComponent(name);
+        }
 
-  let totalGuests = 0;
+        function makeWaUrl(name) {
+            const url = makeUrl(name);
+            const msg = "Halo " + name + " 🌸\nKami mengundang kamu ke pernikahan Amel & Rusdi.\nBuka undangannya di sini ya:\n" + url;
+            return "https://wa.me/?text=" + encodeURIComponent(msg);
+        }
 
-  GROUPS.forEach(group => {
-    const labelEl = document.createElement('div');
-    labelEl.className = 'group-label';
-    labelEl.dataset.group = group.id;
-    labelEl.textContent = group.label;
-    container.appendChild(labelEl);
+        let allItems = []; // { el, name, groupId, groupLabel }
 
-    const listEl = document.createElement('div');
-    listEl.className = 'guest-list';
-    listEl.dataset.group = group.id;
+        function buildList() {
+            const container = document.getElementById('guest-container');
+            container.innerHTML = '';
+            allItems = [];
 
-    group.guests.forEach(name => {
-      const url = makeUrl(name);
-      const item = document.createElement('div');
-      item.className = 'guest-item';
-      item.dataset.name = name.toLowerCase();
-      item.dataset.group = group.id;
-      item.innerHTML = `
+            let totalGuests = 0;
+
+            GROUPS.forEach(group => {
+                const labelEl = document.createElement('div');
+                labelEl.className = 'group-label';
+                labelEl.dataset.group = group.id;
+                labelEl.textContent = group.label;
+                container.appendChild(labelEl);
+
+                const listEl = document.createElement('div');
+                listEl.className = 'guest-list';
+                listEl.dataset.group = group.id;
+
+                group.guests.forEach(name => {
+                    const url = makeUrl(name);
+                    const item = document.createElement('div');
+                    item.className = 'guest-item';
+                    item.dataset.name = name.toLowerCase();
+                    item.dataset.group = group.id;
+                    item.innerHTML = `
         <span class="guest-name">${name}</span>
         <span class="guest-group-tag ${group.tagClass}">${group.label}</span>
-        <span class="guest-url">${url}</span>
-        <button class="btn-copy" onclick="copyUrl('${url.replace(/'/g,"\\'")}', this)">Salin</button>
-        <a class="btn-wa" href="${makeWaUrl(name)}" target="_blank">💬 WA</a>
+     <span class="guest-url">${url}</span>
+        <button class="btn-copy" onclick="copyUrl('${name.replace(/'/g,"\\'")}', '${url.replace(/'/g,"\\'")}', this)">📋 Salin Pesan</button>
       `;
-      listEl.appendChild(item);
-      allItems.push({ el: item, labelEl, listEl, name: name.toLowerCase(), groupId: group.id });
-      totalGuests++;
-    });
+                    listEl.appendChild(item);
+                    allItems.push({ el: item, labelEl, listEl, name: name.toLowerCase(), groupId: group.id });
+                    totalGuests++;
+                });
 
-    container.appendChild(listEl);
-  });
+                container.appendChild(listEl);
+            });
 
-  document.getElementById('stat-total').textContent = totalGuests;
-  document.getElementById('stat-visible').textContent = totalGuests;
+            document.getElementById('stat-total').textContent = totalGuests;
+            document.getElementById('stat-visible').textContent = totalGuests;
 
-  // Show panel after build
-  buildList._built = true;
-}
+            // Show panel after build
+            buildList._built = true;
+        }
 
-// ── FILTER / SEARCH ──
-function doFilter() {
-  const query = document.getElementById('search-input').value.toLowerCase().trim();
-  const groupFilter = document.getElementById('filter-group').value;
+        // ── FILTER / SEARCH ──
+        function doFilter() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            const groupFilter = document.getElementById('filter-group').value;
 
-  let visibleCount = 0;
+            let visibleCount = 0;
 
-  // Track which groups have visible items
-  const groupVisible = {};
+            // Track which groups have visible items
+            const groupVisible = {};
 
-  allItems.forEach(item => {
-    const nameMatch = item.name.includes(query);
-    const groupMatch = !groupFilter || item.groupId === groupFilter;
-    const show = nameMatch && groupMatch;
-    item.el.classList.toggle('hidden-item', !show);
-    if (show) {
-      visibleCount++;
-      groupVisible[item.groupId] = true;
-    }
-  });
+            allItems.forEach(item => {
+                const nameMatch = item.name.includes(query);
+                const groupMatch = !groupFilter || item.groupId === groupFilter;
+                const show = nameMatch && groupMatch;
+                item.el.classList.toggle('hidden-item', !show);
+                if (show) {
+                    visibleCount++;
+                    groupVisible[item.groupId] = true;
+                }
+            });
 
-  // Show/hide group labels
-  document.querySelectorAll('.group-label, .guest-list').forEach(el => {
-    const gid = el.dataset.group;
-    el.style.display = groupVisible[gid] ? '' : 'none';
-  });
+            // Show/hide group labels
+            document.querySelectorAll('.group-label, .guest-list').forEach(el => {
+                const gid = el.dataset.group;
+                el.style.display = groupVisible[gid] ? '' : 'none';
+            });
 
-  document.getElementById('stat-visible').textContent = visibleCount;
-  document.getElementById('no-results').classList.toggle('show', visibleCount === 0);
-}
+            document.getElementById('stat-visible').textContent = visibleCount;
+            document.getElementById('no-results').classList.toggle('show', visibleCount === 0);
+        }
 
-// ── COPY ──
-function copyUrl(url, btn) {
-  navigator.clipboard.writeText(url).then(() => {
-    const orig = btn.textContent;
-    btn.textContent = '✓ Tersalin';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1800);
-  });
-}
+        // ── COPY ──
+        function copyUrl(name, url, btn) {
+            // Panggil fungsi pembuat pesan
+            const textToCopy = generateMessage(name, url);
 
-function copyAll() {
-  let text = "";
-  GROUPS.forEach(g => {
-    text += `=== ${g.label} ===\n`;
-    g.guests.forEach(name => { text += `${name}: ${makeUrl(name)}\n`; });
-    text += "\n";
-  });
-  navigator.clipboard.writeText(text).then(() => {
-    alert("✅ Semua link berhasil disalin!");
-  });
-}
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const orig = btn.textContent;
+                btn.textContent = '✓ Pesan Tersalin';
+                btn.classList.add('copied');
+                setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1800);
+            });
+        }
 
-function copyVisible() {
-  const visible = allItems.filter(i => !i.el.classList.contains('hidden-item'));
-  if (visible.length === 0) { alert("Tidak ada item yang tampil."); return; }
-  const text = visible.map(i => {
-    const name = i.el.querySelector('.guest-name').textContent;
-    return `${name}: ${makeUrl(name)}`;
-  }).join('\n');
-  navigator.clipboard.writeText(text).then(() => {
-    alert(`✅ ${visible.length} link berhasil disalin!`);
-  });
-}
+        function copyAll() {
+            let text = "";
+            GROUPS.forEach(g => {
+                text += `=== ${g.label} ===\n`;
+                g.guests.forEach(name => { text += `${name}: ${makeUrl(name)}\n`; });
+                text += "\n";
+            });
+            navigator.clipboard.writeText(text).then(() => {
+                alert("✅ Semua link berhasil disalin!");
+            });
+        }
 
-// Build jika sudah login saat load
-if (sessionStorage.getItem('admin_auth') === '1') {
-  buildList();
-}
-</script>
+        function copyVisible() {
+            const visible = allItems.filter(i => !i.el.classList.contains('hidden-item'));
+            if (visible.length === 0) { alert("Tidak ada item yang tampil."); return; }
+            const text = visible.map(i => {
+                const name = i.el.querySelector('.guest-name').textContent;
+                return `${name}: ${makeUrl(name)}`;
+            }).join('\n');
+            navigator.clipboard.writeText(text).then(() => {
+                alert(`✅ ${visible.length} link berhasil disalin!`);
+            });
+        }
+
+        // Build jika sudah login saat load
+        if (sessionStorage.getItem('admin_auth') === '1') {
+            buildList();
+        }
+    </script>
 </body>
+
 </html>
