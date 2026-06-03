@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Cormorant:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500&family=Cinzel:wght@400;500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -30,13 +30,8 @@
             --text-light: #9e8880;
         }
 
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            overflow-x: hidden;
-        }
+        * { box-sizing: border-box; }
+        html { overflow-x: hidden; }
 
         body {
             font-family: 'Jost', sans-serif;
@@ -45,20 +40,32 @@
             overflow-x: hidden;
         }
 
+        /* ── FONT CLASSES ── */
+        /* Cormorant Garamond Italic — untuk nama & judul dekoratif besar */
         .font-script {
-            font-family: 'Great Vibes', cursive;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
             color: var(--primary);
             line-height: 1.1;
         }
 
+        /* Cormorant upright untuk serif heading */
         .font-serif {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
             color: var(--text-dark);
         }
 
         .font-serif-italic {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cormorant Garamond', serif;
             font-style: italic;
+            font-weight: 400;
+        }
+
+        /* Cinzel untuk label kecil elegan (huruf kapital semua) */
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
         }
 
         p {
@@ -93,7 +100,7 @@
                 radial-gradient(ellipse at bottom right, rgba(201, 169, 110, 0.1) 0%, transparent 55%),
                 var(--bg);
             padding: 2rem;
-            overflow: hidden; /* ← fix horizontal scroll */
+            overflow: hidden;
         }
 
         .cover-card {
@@ -115,9 +122,7 @@
         .cover-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--primary-light), var(--gold), var(--primary-light));
         }
@@ -130,18 +135,22 @@
         }
 
         .cover-names {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.8rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 4rem;
             color: var(--primary);
             margin: 0.3rem 0;
+            line-height: 1.15;
         }
 
         .cover-sub {
-            font-size: 0.72rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
             letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--text-light);
-            font-weight: 500;
+            font-weight: 400;
         }
 
         /* ── Buttons ── */
@@ -151,11 +160,11 @@
             border: none;
             padding: 13px 40px;
             border-radius: 50px;
-            font-family: 'Jost', sans-serif;
-            font-size: 0.78rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.68rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            font-weight: 500;
+            font-weight: 400;
             box-shadow: 0 12px 30px rgba(176, 125, 110, 0.35);
             transition: all 0.35s ease;
             text-decoration: none;
@@ -173,11 +182,11 @@
             border: 1.5px solid var(--primary) !important;
             padding: 11px 35px;
             border-radius: 50px;
-            font-family: 'Jost', sans-serif;
-            font-size: 0.78rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.68rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            font-weight: 500;
+            font-weight: 400;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
@@ -204,15 +213,14 @@
         .hero-section::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             height: 120px;
             background: linear-gradient(to top, var(--bg), transparent);
         }
 
         .hero-eyebrow {
-            font-size: 0.72rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
             letter-spacing: 5px;
             text-transform: uppercase;
             color: rgba(255, 255, 255, 0.8);
@@ -220,16 +228,20 @@
         }
 
         .hero-names {
-            font-family: 'Great Vibes', cursive;
-            font-size: 5.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 6rem;
             color: #fff;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             margin: 0.2rem 0;
+            line-height: 1.1;
         }
 
         .hero-date {
-            font-size: 0.75rem;
-            letter-spacing: 5px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.68rem;
+            letter-spacing: 6px;
             text-transform: uppercase;
             color: rgba(255, 255, 255, 0.75);
         }
@@ -256,25 +268,24 @@
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
-        .gold-divider i {
-            color: var(--gold);
-            font-size: 0.9rem;
-        }
+        .gold-divider i { color: var(--gold); font-size: 0.9rem; }
 
         /* ── Sections ── */
-        .section-pad {
-            padding: 5rem 0;
-        }
+        .section-pad { padding: 5rem 0; }
 
         .section-title {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.2rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 3.4rem;
             color: var(--primary);
             margin-bottom: 0.3rem;
+            line-height: 1.15;
         }
 
         .section-sub {
-            font-size: 0.72rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.62rem;
             letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--text-light);
@@ -291,12 +302,13 @@
         }
 
         .ayat-card::before {
-            content: '"';
-            font-family: 'Great Vibes', cursive;
-            font-size: 8rem;
+            content: '\201C';
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 9rem;
             color: var(--primary-light);
             position: absolute;
-            top: -1rem;
+            top: -1.5rem;
             left: 2rem;
             line-height: 1;
         }
@@ -305,7 +317,7 @@
             font-size: 1.5rem;
             color: var(--text-dark);
             line-height: 2.2;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cormorant Garamond', serif;
             direction: rtl;
         }
 
@@ -339,15 +351,18 @@
         }
 
         .person-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1.6rem;
             color: var(--text-dark);
             margin-top: 1.2rem;
         }
 
         .ampersand {
-            font-family: 'Great Vibes', cursive;
-            font-size: 5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 300;
+            font-size: 5.5rem;
             color: var(--primary);
             line-height: 1;
         }
@@ -384,24 +399,19 @@
         }
 
         .acara-icon {
-            width: 60px;
-            height: 60px;
+            width: 60px; height: 60px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary-light), var(--gold-light));
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             margin: 0 auto 1.2rem;
         }
 
-        .acara-icon i {
-            color: var(--primary-dark);
-            font-size: 1.3rem;
-        }
+        .acara-icon i { color: var(--primary-dark); font-size: 1.3rem; }
 
         .acara-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1.5rem;
             color: var(--text-dark);
         }
 
@@ -409,12 +419,13 @@
             display: inline-block;
             background: var(--primary-light);
             color: var(--primary-dark);
-            font-size: 0.75rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
             letter-spacing: 2px;
             padding: 4px 16px;
             border-radius: 20px;
             margin: 0.8rem 0;
-            font-weight: 500;
+            font-weight: 400;
         }
 
         /* ── Timeline ── */
@@ -428,9 +439,7 @@
         .timeline::before {
             content: '';
             position: absolute;
-            left: 10px;
-            top: 0;
-            bottom: 0;
+            left: 10px; top: 0; bottom: 0;
             width: 1px;
             background: linear-gradient(to bottom, transparent, var(--primary-light), var(--gold), var(--primary-light), transparent);
         }
@@ -447,23 +456,22 @@
 
         .timeline-dot {
             position: absolute;
-            left: -35px;
-            top: 1.6rem;
-            width: 14px;
-            height: 14px;
+            left: -35px; top: 1.6rem;
+            width: 14px; height: 14px;
             background: var(--gold);
             border-radius: 50%;
             box-shadow: 0 0 0 4px var(--gold-light), 0 0 0 8px rgba(201, 169, 110, 0.1);
         }
 
         .timeline-item h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1.15rem;
             color: var(--primary-dark);
             margin-bottom: 0.4rem;
         }
 
-        /* ── GALLERY (New) ── */
+        /* ── GALLERY ── */
         .gallery-section {
             padding: 5rem 0 4rem;
             background: var(--bg-warm);
@@ -481,11 +489,7 @@
             pointer-events: none;
         }
 
-        .gallery-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
+        .gallery-container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
         .gallery-masonry {
             display: grid;
@@ -494,361 +498,200 @@
             gap: 14px;
         }
 
-        .g-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 18px;
-            cursor: pointer;
-        }
+        .g-item { position: relative; overflow: hidden; border-radius: 18px; cursor: pointer; }
 
-        /* Desktop spans */
-        .g-item:nth-child(1) {
-            grid-column: 1 / 6;
-            grid-row: 1 / 5;
-        }
-
-        .g-item:nth-child(2) {
-            grid-column: 6 / 9;
-            grid-row: 1 / 3;
-        }
-
-        .g-item:nth-child(3) {
-            grid-column: 9 / 13;
-            grid-row: 1 / 4;
-        }
-
-        .g-item:nth-child(4) {
-            grid-column: 6 / 9;
-            grid-row: 3 / 5;
-        }
-
-        .g-item:nth-child(5) {
-            grid-column: 9 / 13;
-            grid-row: 4 / 6;
-        }
-
-        .g-item:nth-child(6) {
-            grid-column: 1 / 5;
-            grid-row: 5 / 7;
-        }
-
-        .g-item:nth-child(7) {
-            grid-column: 5 / 9;
-            grid-row: 5 / 7;
-        }
-
-        .g-item:nth-child(8) {
-            grid-column: 9 / 13;
-            grid-row: 6 / 8;
-        }
+        .g-item:nth-child(1) { grid-column: 1 / 6; grid-row: 1 / 5; }
+        .g-item:nth-child(2) { grid-column: 6 / 9; grid-row: 1 / 3; }
+        .g-item:nth-child(3) { grid-column: 9 / 13; grid-row: 1 / 4; }
+        .g-item:nth-child(4) { grid-column: 6 / 9; grid-row: 3 / 5; }
+        .g-item:nth-child(5) { grid-column: 9 / 13; grid-row: 4 / 6; }
+        .g-item:nth-child(6) { grid-column: 1 / 5; grid-row: 5 / 7; }
+        .g-item:nth-child(7) { grid-column: 5 / 9; grid-row: 5 / 7; }
+        .g-item:nth-child(8) { grid-column: 9 / 13; grid-row: 6 / 8; }
 
         .g-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+            width: 100%; height: 100%; object-fit: cover; display: block;
             transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .g-overlay {
-            position: absolute;
-            inset: 0;
+            position: absolute; inset: 0;
             background: linear-gradient(to top, rgba(58, 46, 43, 0.75) 0%, rgba(58, 46, 43, 0.15) 50%, transparent 100%);
             opacity: 0;
             transition: opacity 0.4s ease;
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
+            display: flex; align-items: flex-end; justify-content: space-between;
             padding: 1.2rem 1.2rem 1rem;
         }
 
-        .g-item:hover img {
-            transform: scale(1.07);
-        }
-
-        .g-item:hover .g-overlay {
-            opacity: 1;
-        }
+        .g-item:hover img { transform: scale(1.07); }
+        .g-item:hover .g-overlay { opacity: 1; }
 
         .g-expand-btn {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.15);
-            border: 1.5px solid rgba(255, 255, 255, 0.5);
+            width: 40px; height: 40px;
+            background: rgba(255,255,255,0.15);
+            border: 1.5px solid rgba(255,255,255,0.5);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             backdrop-filter: blur(6px);
             transform: translateY(10px) scale(0.85);
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             margin-left: auto;
         }
 
-        .g-item:hover .g-expand-btn {
-            transform: translateY(0) scale(1);
-        }
-
-        .g-expand-btn i {
-            color: #fff;
-            font-size: 0.85rem;
-        }
+        .g-item:hover .g-expand-btn { transform: translateY(0) scale(1); }
+        .g-expand-btn i { color: #fff; font-size: 0.85rem; }
 
         .g-label {
-            font-family: 'Great Vibes', cursive;
-            color: rgba(255, 255, 255, 0.88);
-            font-size: 1.4rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: rgba(255,255,255,0.88);
+            font-size: 1.5rem;
             transform: translateY(6px);
             transition: transform 0.4s ease;
             line-height: 1;
         }
 
-        .g-item:hover .g-label {
-            transform: translateY(0);
-        }
+        .g-item:hover .g-label { transform: translateY(0); }
 
         /* ── Lightbox ── */
         .lb-backdrop {
-            position: fixed;
-            inset: 0;
+            position: fixed; inset: 0;
             background: rgba(20, 14, 12, 0.92);
             backdrop-filter: blur(12px);
             z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
             transition: opacity 0.35s ease;
         }
 
-        .lb-backdrop.active {
-            opacity: 1;
-            pointer-events: all;
-        }
+        .lb-backdrop.active { opacity: 1; pointer-events: all; }
 
         .lb-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative; width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
             padding: 2rem;
         }
 
         .lb-img-wrap {
             position: relative;
-            max-width: min(90vw, 900px);
-            max-height: 85vh;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6);
+            max-width: min(90vw, 900px); max-height: 85vh;
+            border-radius: 20px; overflow: hidden;
+            box-shadow: 0 40px 120px rgba(0,0,0,0.6);
         }
 
         #lb-img {
-            display: block;
-            max-width: 100%;
-            max-height: 85vh;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            transition: opacity 0.2s ease;
-            border-radius: 20px;
+            display: block; max-width: 100%; max-height: 85vh;
+            width: auto; height: auto; object-fit: contain;
+            transition: opacity 0.2s ease; border-radius: 20px;
         }
 
         .lb-strip {
-            position: fixed;
-            bottom: 1.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 7px;
-            align-items: center;
+            position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 7px; align-items: center;
         }
 
         .lb-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-            cursor: pointer;
+            width: 6px; height: 6px; border-radius: 50%;
+            background: rgba(255,255,255,0.3); transition: all 0.3s ease; cursor: pointer;
         }
 
-        .lb-dot.active {
-            background: var(--gold);
-            width: 22px;
-            border-radius: 3px;
-        }
+        .lb-dot.active { background: var(--gold); width: 22px; border-radius: 3px; }
 
         .lb-nav {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 48px;
-            height: 48px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1.5px solid rgba(255, 255, 255, 0.25);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            backdrop-filter: blur(8px);
-            transition: all 0.3s ease;
-            z-index: 100000;
+            position: fixed; top: 50%; transform: translateY(-50%);
+            width: 48px; height: 48px;
+            background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.25);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; backdrop-filter: blur(8px); transition: all 0.3s ease; z-index: 100000;
         }
 
-        .lb-nav:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-50%) scale(1.08);
-        }
-
-        .lb-prev {
-            left: 1.5rem;
-        }
-
-        .lb-next {
-            right: 1.5rem;
-        }
-
-        .lb-nav i {
-            color: #fff;
-            font-size: 1rem;
-        }
+        .lb-nav:hover { background: rgba(255,255,255,0.2); transform: translateY(-50%) scale(1.08); }
+        .lb-prev { left: 1.5rem; }
+        .lb-next { right: 1.5rem; }
+        .lb-nav i { color: #fff; font-size: 1rem; }
 
         .lb-close {
-            position: fixed;
-            top: 1.2rem;
-            right: 1.5rem;
-            width: 42px;
-            height: 42px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1.5px solid rgba(255, 255, 255, 0.25);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            backdrop-filter: blur(8px);
-            transition: all 0.3s ease;
-            z-index: 100000;
+            position: fixed; top: 1.2rem; right: 1.5rem;
+            width: 42px; height: 42px;
+            background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.25);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; backdrop-filter: blur(8px); transition: all 0.3s ease; z-index: 100000;
         }
 
-        .lb-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .lb-close i {
-            color: #fff;
-            font-size: 1rem;
-        }
+        .lb-close:hover { background: rgba(255,255,255,0.2); }
+        .lb-close i { color: #fff; font-size: 1rem; }
 
         .lb-counter-tag {
-            position: fixed;
-            top: 1.3rem;
-            left: 1.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(8px);
-            color: #fff;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-family: 'Jost', sans-serif;
-            z-index: 100000;
+            position: fixed; top: 1.3rem; left: 1.5rem;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px); color: #fff;
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem; letter-spacing: 2px;
+            padding: 6px 14px; border-radius: 20px; z-index: 100000;
         }
 
         /* ── Countdown ── */
         .countdown-section {
             background: linear-gradient(135deg, var(--text-dark) 0%, #2a1f1d 100%);
-            position: relative;
-            overflow: hidden;
+            position: relative; overflow: hidden;
         }
 
         .countdown-section::before {
             content: '';
-            position: absolute;
-            inset: 0;
+            position: absolute; inset: 0;
             background: radial-gradient(ellipse at top right, rgba(201, 169, 110, 0.15) 0%, transparent 60%);
         }
 
         .count-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 1.5rem 1.2rem;
-            min-width: 90px;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px; padding: 1.5rem 1.2rem; min-width: 90px;
             backdrop-filter: blur(10px);
         }
 
         .count-num {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--gold-light);
-            line-height: 1;
-            font-weight: 700;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 2.5rem; color: var(--gold-light); line-height: 1;
         }
 
         .count-label {
-            font-size: 0.65rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.5);
-            margin-top: 0.4rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.58rem; letter-spacing: 2px; text-transform: uppercase;
+            color: rgba(255,255,255,0.5); margin-top: 0.4rem;
         }
 
         .count-sep {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--gold);
-            opacity: 0.4;
-            align-self: flex-start;
-            margin-top: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem; color: var(--gold); opacity: 0.4;
+            align-self: flex-start; margin-top: 1.5rem;
         }
 
         /* ── Gift ── */
         .gift-card {
-            background: #fff;
-            border: 1px solid var(--primary-light);
-            border-radius: 24px;
-            padding: 2.5rem 2rem;
-            text-align: center;
+            background: #fff; border: 1px solid var(--primary-light);
+            border-radius: 24px; padding: 2.5rem 2rem; text-align: center;
             box-shadow: 0 15px 50px rgba(176, 125, 110, 0.1);
             transition: transform 0.3s ease;
         }
 
-        .gift-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .gift-bank-logo {
-            max-width: 90px;
-            margin-bottom: 1rem;
-        }
+        .gift-card:hover { transform: translateY(-4px); }
+        .gift-bank-logo { max-width: 90px; margin-bottom: 1rem; }
 
         .gift-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            letter-spacing: 3px;
-            color: var(--text-dark);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1.4rem; letter-spacing: 3px; color: var(--text-dark);
         }
 
         /* ── FAQ ── */
         .accordion-item {
             border: 1px solid var(--primary-light) !important;
-            border-radius: 12px !important;
-            margin-bottom: 10px;
-            overflow: hidden;
+            border-radius: 12px !important; margin-bottom: 10px; overflow: hidden;
         }
 
         .accordion-button {
-            background: #fff !important;
-            color: var(--text-dark) !important;
-            font-weight: 500;
-            box-shadow: none !important;
+            background: #fff !important; color: var(--text-dark) !important;
+            font-weight: 500; box-shadow: none !important;
         }
 
         .accordion-button:not(.collapsed) {
@@ -856,400 +699,180 @@
             background: var(--primary-light) !important;
         }
 
-        .accordion-body {
-            color: var(--text-mid);
-        }
+        .accordion-body { color: var(--text-mid); }
 
         /* ── Footer ── */
         footer {
             background: linear-gradient(180deg, #2a1f1d 0%, var(--text-dark) 100%);
-            position: relative;
-            overflow: hidden;
+            position: relative; overflow: hidden;
         }
 
         footer::before {
             content: '';
-            position: absolute;
-            inset: 0;
+            position: absolute; inset: 0;
             background: radial-gradient(ellipse at bottom center, rgba(201, 169, 110, 0.08) 0%, transparent 60%);
         }
 
         .health-icon-wrap {
-            width: 54px;
-            height: 54px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 54px; height: 54px; border-radius: 50%;
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+            display: flex; align-items: center; justify-content: center;
             margin: 0 auto 0.6rem;
         }
 
-        .health-icon-wrap i {
+        .health-icon-wrap i { color: var(--gold-light); font-size: 1.1rem; }
+
+        .footer-thanks {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 300;
+            font-size: 4rem;
             color: var(--gold-light);
-            font-size: 1.1rem;
+            margin: 1rem 0;
+            line-height: 1.1;
         }
 
         /* ── Audio ── */
         .floating-audio {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            width: 52px;
-            height: 52px;
+            position: fixed; bottom: 28px; right: 28px;
+            width: 52px; height: 52px;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: #fff;
-            border-radius: 50%;
-            display: none;
-            align-items: center;
-            justify-content: center;
+            color: #fff; border-radius: 50%;
+            display: none; align-items: center; justify-content: center;
             box-shadow: 0 8px 24px rgba(176, 125, 110, 0.5);
-            cursor: pointer;
-            z-index: 1000;
+            cursor: pointer; z-index: 1000;
             animation: pulse 2.5s infinite;
             transition: all 0.3s ease;
         }
 
-        .floating-audio:hover {
-            transform: scale(1.1);
-        }
+        .floating-audio:hover { transform: scale(1.1); }
 
         @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(176, 125, 110, 0.6);
-            }
-
-            70% {
-                box-shadow: 0 0 0 16px rgba(176, 125, 110, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(176, 125, 110, 0);
-            }
+            0% { box-shadow: 0 0 0 0 rgba(176, 125, 110, 0.6); }
+            70% { box-shadow: 0 0 0 16px rgba(176, 125, 110, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(176, 125, 110, 0); }
         }
 
-        .audio-paused {
-            animation: none;
-            background: var(--text-light);
-        }
+        .audio-paused { animation: none; background: var(--text-light); }
 
         /* ── Ucapan ── */
-        .ucapan-section {
-            background: var(--bg);
-        }
+        .ucapan-section { background: var(--bg); }
 
         .ucapan-form-card {
-            background: #fff;
-            border: 1px solid var(--primary-light);
-            border-radius: 24px;
-            padding: 2.5rem;
+            background: #fff; border: 1px solid var(--primary-light);
+            border-radius: 24px; padding: 2.5rem;
             box-shadow: 0 15px 50px rgba(176, 125, 110, 0.08);
         }
 
         .ucapan-input {
-            border: 1.5px solid var(--primary-light);
-            border-radius: 12px;
-            padding: 12px 16px;
-            font-family: 'Jost', sans-serif;
-            font-size: 0.9rem;
-            color: var(--text-dark);
-            background: var(--bg);
-            width: 100%;
-            outline: none;
-            transition: border-color 0.3s;
-            margin-bottom: 12px;
+            border: 1.5px solid var(--primary-light); border-radius: 12px;
+            padding: 12px 16px; font-family: 'Jost', sans-serif; font-size: 0.9rem;
+            color: var(--text-dark); background: var(--bg); width: 100%; outline: none;
+            transition: border-color 0.3s; margin-bottom: 12px;
         }
 
-        .ucapan-input:focus {
-            border-color: var(--primary);
-            background: #fff;
-        }
-
-        .ucapan-input::placeholder {
-            color: var(--text-light);
-        }
-
-        textarea.ucapan-input {
-            resize: vertical;
-            min-height: 100px;
-        }
+        .ucapan-input:focus { border-color: var(--primary); background: #fff; }
+        .ucapan-input::placeholder { color: var(--text-light); }
+        textarea.ucapan-input { resize: vertical; min-height: 100px; }
 
         .ucapan-list {
-            margin-top: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            max-height: 420px;
-            overflow-y: auto;
-            padding-right: 4px;
+            margin-top: 2rem; display: flex; flex-direction: column; gap: 14px;
+            max-height: 420px; overflow-y: auto; padding-right: 4px;
         }
 
-        .ucapan-list::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .ucapan-list::-webkit-scrollbar-thumb {
-            background: var(--primary-light);
-            border-radius: 4px;
-        }
+        .ucapan-list::-webkit-scrollbar { width: 4px; }
+        .ucapan-list::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 4px; }
 
         .ucapan-bubble {
-            background: var(--bg-warm);
-            border: 1px solid var(--primary-light);
-            border-radius: 16px;
-            padding: 1rem 1.2rem;
-            text-align: left;
-            position: relative;
+            background: var(--bg-warm); border: 1px solid var(--primary-light);
+            border-radius: 16px; padding: 1rem 1.2rem; text-align: left; position: relative;
         }
 
         .ucapan-bubble .uc-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.95rem;
-            color: var(--primary-dark);
-            font-weight: 700;
-            margin-bottom: 4px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1rem; color: var(--primary-dark); margin-bottom: 4px;
         }
 
         .ucapan-bubble .uc-attend {
-            display: inline-block;
-            font-size: 0.65rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            padding: 2px 10px;
-            border-radius: 20px;
-            margin-bottom: 8px;
-            font-weight: 500;
+            display: inline-block; font-size: 0.65rem; letter-spacing: 1.5px;
+            text-transform: uppercase; padding: 2px 10px; border-radius: 20px;
+            margin-bottom: 8px; font-family: 'Cinzel', serif; font-weight: 400;
         }
 
-        .uc-attend.hadir {
-            background: #e8f5e9;
-            color: #388e3c;
-        }
+        .uc-attend.hadir { background: #e8f5e9; color: #388e3c; }
+        .uc-attend.mungkin { background: #fff8e1; color: #f9a825; }
+        .uc-attend.tidak { background: #fce4ec; color: #c62828; }
 
-        .uc-attend.mungkin {
-            background: #fff8e1;
-            color: #f9a825;
-        }
-
-        .uc-attend.tidak {
-            background: #fce4ec;
-            color: #c62828;
-        }
-
-        .ucapan-bubble .uc-msg {
-            font-size: 0.88rem;
-            color: var(--text-mid);
-            line-height: 1.7;
-            margin: 0;
-        }
+        .ucapan-bubble .uc-msg { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; margin: 0; }
 
         .ucapan-bubble .uc-quote {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.5rem;
-            color: var(--primary-light);
-            position: absolute;
-            top: 6px;
-            right: 14px;
-            line-height: 1;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 3rem; color: var(--primary-light);
+            position: absolute; top: 4px; right: 14px; line-height: 1;
         }
 
         .ucapan-empty {
-            text-align: center;
-            color: var(--text-light);
-            font-style: italic;
-            font-size: 0.88rem;
-            padding: 2rem 0;
+            text-align: center; color: var(--text-light);
+            font-style: italic; font-size: 0.88rem; padding: 2rem 0;
         }
 
         select.ucapan-input {
             appearance: none;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239e8880' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 14px center;
-            padding-right: 36px;
-            cursor: pointer;
+            background-repeat: no-repeat; background-position: right 14px center;
+            padding-right: 36px; cursor: pointer;
         }
 
         /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
             .gallery-masonry {
-                grid-template-columns: repeat(6, 1fr);
-                grid-auto-rows: 100px;
-                gap: 10px;
+                grid-template-columns: repeat(6, 1fr); grid-auto-rows: 100px; gap: 10px;
             }
-
-            .g-item:nth-child(1) {
-                grid-column: 1 / 4;
-                grid-row: 1 / 4;
-            }
-
-            .g-item:nth-child(2) {
-                grid-column: 4 / 7;
-                grid-row: 1 / 3;
-            }
-
-            .g-item:nth-child(3) {
-                grid-column: 4 / 7;
-                grid-row: 3 / 5;
-            }
-
-            .g-item:nth-child(4) {
-                grid-column: 1 / 3;
-                grid-row: 4 / 6;
-            }
-
-            .g-item:nth-child(5) {
-                grid-column: 3 / 5;
-                grid-row: 4 / 6;
-            }
-
-            .g-item:nth-child(6) {
-                grid-column: 5 / 7;
-                grid-row: 5 / 7;
-            }
-
-            .g-item:nth-child(7) {
-                grid-column: 1 / 4;
-                grid-row: 6 / 8;
-            }
-
-            .g-item:nth-child(8) {
-                grid-column: 4 / 7;
-                grid-row: 7 / 9;
-            }
-
-            .lb-nav {
-                width: 36px;
-                height: 36px;
-            }
-
-            .lb-prev {
-                left: 0.5rem;
-            }
-
-            .lb-next {
-                right: 0.5rem;
-            }
+            .g-item:nth-child(1) { grid-column: 1 / 4; grid-row: 1 / 4; }
+            .g-item:nth-child(2) { grid-column: 4 / 7; grid-row: 1 / 3; }
+            .g-item:nth-child(3) { grid-column: 4 / 7; grid-row: 3 / 5; }
+            .g-item:nth-child(4) { grid-column: 1 / 3; grid-row: 4 / 6; }
+            .g-item:nth-child(5) { grid-column: 3 / 5; grid-row: 4 / 6; }
+            .g-item:nth-child(6) { grid-column: 5 / 7; grid-row: 5 / 7; }
+            .g-item:nth-child(7) { grid-column: 1 / 4; grid-row: 6 / 8; }
+            .g-item:nth-child(8) { grid-column: 4 / 7; grid-row: 7 / 9; }
+            .lb-nav { width: 36px; height: 36px; }
+            .lb-prev { left: 0.5rem; }
+            .lb-next { right: 0.5rem; }
         }
 
         @media (max-width: 768px) {
-            .hero-names {
-                font-size: 3.5rem;
-            }
-
-            .gallery-section {
-                padding: 3.5rem 0 3rem;
-            }
-
-            .section-title {
-                font-size: 2.6rem;
-            }
-
-            .ayat-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .count-box {
-                min-width: 70px;
-                padding: 1rem 0.8rem;
-            }
-
-            .count-num {
-                font-size: 1.8rem;
-            }
-
-            /* ← fix cover padding on mobile */
-            .cover-card {
-                padding: 2.5rem 1.5rem;
-            }
+            .hero-names { font-size: 4rem; }
+            .gallery-section { padding: 3.5rem 0 3rem; }
+            .section-title { font-size: 2.8rem; }
+            .ayat-card { padding: 2rem 1.5rem; }
+            .count-box { min-width: 70px; padding: 1rem 0.8rem; }
+            .count-num { font-size: 1.8rem; }
+            .cover-card { padding: 2.5rem 1.5rem; }
+            .cover-names { font-size: 3.2rem; }
         }
 
         @media (max-width: 580px) {
-            .gallery-masonry {
-                grid-template-columns: repeat(2, 1fr);
-                grid-auto-rows: 140px;
-                gap: 8px;
-            }
-
-            .g-item:nth-child(1) {
-                grid-column: 1 / 3;
-                grid-row: 1 / 3;
-            }
-
-            .g-item:nth-child(2) {
-                grid-column: 1 / 2;
-                grid-row: 3 / 4;
-            }
-
-            .g-item:nth-child(3) {
-                grid-column: 2 / 3;
-                grid-row: 3 / 5;
-            }
-
-            .g-item:nth-child(4) {
-                grid-column: 1 / 2;
-                grid-row: 4 / 5;
-            }
-
-            .g-item:nth-child(5) {
-                grid-column: 1 / 3;
-                grid-row: 5 / 6;
-            }
-
-            .g-item:nth-child(6) {
-                grid-column: 1 / 2;
-                grid-row: 6 / 7;
-            }
-
-            .g-item:nth-child(7) {
-                grid-column: 2 / 3;
-                grid-row: 6 / 8;
-            }
-
-            .g-item:nth-child(8) {
-                grid-column: 1 / 2;
-                grid-row: 7 / 8;
-            }
-
-            .g-item {
-                border-radius: 12px;
-            }
-
-            .g-label {
-                font-size: 1.1rem;
-            }
-
-            .g-expand-btn {
-                width: 34px;
-                height: 34px;
-            }
-
-            .lb-close {
-                top: 0.8rem;
-                right: 0.8rem;
-            }
-
-            .lb-counter-tag {
-                top: 0.8rem;
-                left: 0.8rem;
-            }
-
-            .lb-strip {
-                bottom: 1rem;
-            }
-
-            .lb-inner {
-                padding: 0.8rem;
-            }
-
-            #lb-img {
-                border-radius: 14px;
-            }
-
-            .lb-img-wrap {
-                border-radius: 14px;
-            }
+            .gallery-masonry { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; gap: 8px; }
+            .g-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; }
+            .g-item:nth-child(2) { grid-column: 1 / 2; grid-row: 3 / 4; }
+            .g-item:nth-child(3) { grid-column: 2 / 3; grid-row: 3 / 5; }
+            .g-item:nth-child(4) { grid-column: 1 / 2; grid-row: 4 / 5; }
+            .g-item:nth-child(5) { grid-column: 1 / 3; grid-row: 5 / 6; }
+            .g-item:nth-child(6) { grid-column: 1 / 2; grid-row: 6 / 7; }
+            .g-item:nth-child(7) { grid-column: 2 / 3; grid-row: 6 / 8; }
+            .g-item:nth-child(8) { grid-column: 1 / 2; grid-row: 7 / 8; }
+            .g-item { border-radius: 12px; }
+            .g-label { font-size: 1.2rem; }
+            .g-expand-btn { width: 34px; height: 34px; }
+            .lb-close { top: 0.8rem; right: 0.8rem; }
+            .lb-counter-tag { top: 0.8rem; left: 0.8rem; }
+            .lb-strip { bottom: 1rem; }
+            .lb-inner { padding: 0.8rem; }
+            #lb-img { border-radius: 14px; }
+            .lb-img-wrap { border-radius: 14px; }
         }
     </style>
 </head>
@@ -1268,7 +891,7 @@
             <div class="cover-card" data-aos="zoom-in" data-aos-duration="1200">
                 <p class="cover-sub mb-3">The Wedding Of</p>
                 <div class="cover-ornament mb-1">✦ ✦ ✦</div>
-                <div class="cover-names">Amel & Rusdi</div>
+                <div class="cover-names">Amel &amp; Rusdi</div>
                 <div class="cover-ornament mt-1 mb-4">✦ ✦ ✦</div>
                 <p style="font-size: 0.85rem; color: var(--text-mid);">Kepada Yth.<br>Bapak / Ibu / Saudara/i</p>
                 <button class="btn-main mt-4" onclick="openInvitation()">
@@ -1283,7 +906,7 @@
         <div class="container position-relative" data-aos="fade-up" data-aos-duration="1800" data-aos-delay="300">
             <p class="hero-eyebrow">We Are Getting Married</p>
             <div class="hero-line"></div>
-            <div class="hero-names">Amel & Rusdi</div>
+            <div class="hero-names">Amel &amp; Rusdi</div>
             <div class="hero-line"></div>
             <p class="hero-date">14 · 06 · 2026</p>
         </div>
@@ -1302,13 +925,11 @@
                             <i class="fas fa-star-and-crescent"></i>
                             <span></span>
                         </div>
-                        <p class="font-serif-italic" style="font-size: 0.95rem; color: var(--text-mid);">"Dan di antara
+                        <p class="font-serif-italic" style="font-size: 1rem; color: var(--text-mid);">"Dan di antara
                             tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu
                             sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu
                             rasa kasih dan sayang."</p>
-                        <p class="mt-2"
-                            style="color: var(--gold); font-weight: 500; font-size: 0.85rem; letter-spacing: 2px;">—
-                            Q.S. Ar-Rum : 21 —</p>
+                        <p class="mt-2" style="color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 2px;">— Q.S. Ar-Rum : 21 —</p>
                     </div>
                 </div>
             </div>
@@ -1374,9 +995,8 @@
                         <div class="acara-icon" style="width:70px;height:70px;">
                             <i class="fas fa-heart" style="font-size:1.5rem;"></i>
                         </div>
-                        <h3 class="acara-title" style="font-size:1.6rem;">Akad Nikah &amp; Resepsi</h3>
-                        <div
-                            style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin: 1rem 0 1.2rem;">
+                        <h3 class="acara-title" style="font-size:1.7rem;">Akad Nikah &amp; Resepsi</h3>
+                        <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin: 1rem 0 1.2rem;">
                             <span class="acara-time" style="margin:0;">Akad · 08.00 WIB</span>
                             <span class="acara-time" style="margin:0;">Resepsi · 11.00 — Selesai</span>
                         </div>
@@ -1412,26 +1032,23 @@
                 <div class="timeline-item" data-aos="fade-up">
                     <div class="timeline-dot"></div>
                     <h4>Awal Bertemu</h4>
-                    <p>Berawal dari pertemuan yang sederhana, kami mulai saling mengenal dan berbagi cerita. Waktu
-                        mengantarkan kami pada kenyamanan yang tak terduga.</p>
+                    <p>Di dunia yang luas ini, kami percaya bahwa tidak ada pertemuan yang benar-benar kebetulan. Bukan karena bertemu lalu berjodoh, tapi karena berjodoh maka kami dipertemukan. Tuhan mempertemukan dua hati pada waktu yang tepat dengan cara yang sederhana, namun bermakna.</p>
                 </div>
                 <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
                     <div class="timeline-dot"></div>
                     <h4>Menyatakan Cinta</h4>
-                    <p>Setelah melewati banyak momen berharga bersama, kami menyadari memiliki tujuan dan harapan yang
-                        sama untuk masa depan.</p>
+                    <p>Perjalanan kami dimulai dari sapa yang sederhana dan membawa kehangatan. Waktu demi waktu kami belajar tentang arti cinta, tentang menerima, memahami, dan tumbuh bersama. Kami dipertemukan karena semesta merestui doa-doa yang kami panjatkan diam-diam. Sejak itu kami saling menyadari bahwa satu sama salin adalah bagian takdir yang telah lama dicari.</p>
                 </div>
                 <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
                     <div class="timeline-dot"></div>
                     <h4>Lamaran</h4>
-                    <p>Dengan restu kedua orang tua, kami mengikat janji untuk melangkah ke jenjang yang lebih serius,
-                        mempersiapkan hari bahagia kami bersama.</p>
+                    <p>Kini, kami memilih untuk melangkah bersama ke fase baru, menyatukan dua hati dalam satu tujuan dan satu doa. Kehendak-Nya menuntun kami pada sebuah pertemuan yang tak pernah disangka, hingga akhirnya membawa kami pada sebuah ikatan suci yang dicintai-Nya. Kami melangsungkan acara lamaran di bulan januari 2026 lalu. Inilah sepenggal kisah cinta kami yang kami bagikan dengan penuh syukur dan sukacita.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ── GALERI (NEW) ── -->
+    <!-- ── GALERI ── -->
     <section class="gallery-section">
         <div class="gallery-container">
             <div class="text-center mb-5" data-aos="fade-up">
@@ -1445,15 +1062,13 @@
             </div>
 
             <div class="gallery-masonry" data-aos="fade-up" data-aos-duration="1000">
-
                 <div class="g-item" onclick="openLb(0)">
                     <img src="./asset/img/pre1.jpeg" alt="Pre-wedding 1" loading="lazy">
                     <div class="g-overlay">
-                        <span class="g-label">Amel & Rusdi</span>
+                        <span class="g-label">Amel &amp; Rusdi</span>
                         <div class="g-expand-btn"><i class="fas fa-expand-alt"></i></div>
                     </div>
                 </div>
-
                 <div class="g-item" onclick="openLb(1)">
                     <img src="./asset/img/pre3.jpeg" alt="Pre-wedding 2" loading="lazy">
                     <div class="g-overlay">
@@ -1461,7 +1076,6 @@
                         <div class="g-expand-btn"><i class="fas fa-expand-alt"></i></div>
                     </div>
                 </div>
-
                 <div class="g-item" onclick="openLb(2)">
                     <img src="./asset/img/pre6.jpeg" alt="Pre-wedding 3" loading="lazy">
                     <div class="g-overlay">
@@ -1469,7 +1083,6 @@
                         <div class="g-expand-btn"><i class="fas fa-expand-alt"></i></div>
                     </div>
                 </div>
-
                 <div class="g-item" onclick="openLb(3)">
                     <img src="./asset/img/pre8.jpeg" alt="Pre-wedding 4" loading="lazy">
                     <div class="g-overlay">
@@ -1477,7 +1090,6 @@
                         <div class="g-expand-btn"><i class="fas fa-expand-alt"></i></div>
                     </div>
                 </div>
-
                 <div class="g-item" onclick="openLb(4)">
                     <img src="./asset/img/pre2.jpeg" alt="Pre-wedding 5" loading="lazy">
                     <div class="g-overlay">
@@ -1485,7 +1097,6 @@
                         <div class="g-expand-btn"><i class="fas fa-expand-alt"></i></div>
                     </div>
                 </div>
-
                 <div class="g-item" onclick="openLb(5)">
                     <img src="./asset/img/pre4.jpeg" alt="Pre-wedding 6" loading="lazy">
                     <div class="g-overlay">
@@ -1493,7 +1104,6 @@
                         <div class="g-expand-btn"><i class="fas fa-expand-alt"></i></div>
                     </div>
                 </div>
-
                 <div class="g-item" onclick="openLb(6)">
                     <img src="./asset/img/pre7.jpeg" alt="Pre-wedding 7" loading="lazy">
                     <div class="g-overlay">
@@ -1501,7 +1111,6 @@
                         <div class="g-expand-btn"><i class="fas fa-expand-alt"></i></div>
                     </div>
                 </div>
-
                 <div class="g-item" onclick="openLb(7)">
                     <img src="./asset/img/pre9.jpeg" alt="Pre-wedding 8" loading="lazy">
                     <div class="g-overlay">
@@ -1509,12 +1118,11 @@
                         <div class="g-expand-btn"><i class="fas fa-expand-alt"></i></div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- ── LIGHTBOX (NEW) ── -->
+    <!-- ── LIGHTBOX ── -->
     <div class="lb-backdrop" id="lb-backdrop" onclick="closeLbOutside(event)">
         <div class="lb-inner">
             <div class="lb-img-wrap">
@@ -1532,12 +1140,9 @@
     <div class="countdown-section section-pad">
         <div class="container position-relative text-center">
             <div data-aos="fade-up">
-                <p
-                    style="color: rgba(255,255,255,0.5); font-size: 0.72rem; letter-spacing: 4px; text-transform: uppercase;">
-                    Menuju Hari Bahagia</p>
+                <p style="color: rgba(255,255,255,0.5); font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 4px; text-transform: uppercase;">Menuju Hari Bahagia</p>
                 <div class="section-title" style="color: var(--gold-light); margin-bottom: 0.5rem;">Hitung Mundur</div>
-                <p style="color: rgba(255,255,255,0.55); margin-bottom: 2.5rem;">Siang dan malam berganti, kami nantikan
-                    kehadiran Anda menjadi saksi ikrar suci kami</p>
+                <p style="color: rgba(255,255,255,0.55); margin-bottom: 2.5rem;">Siang dan malam berganti, kami nantikan kehadiran Anda menjadi saksi ikrar suci kami</p>
                 <div id="countdown" class="d-flex justify-content-center align-items-start gap-3 flex-wrap">
                     <div class="count-box">
                         <div class="count-num" id="cd-days">--</div>
@@ -1601,26 +1206,22 @@
                     <div class="accordion accordion-flush" id="faqAccordion">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq1">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
                                     <strong>Apakah tersedia area parkir?</strong>
                                 </button>
                             </h2>
                             <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">Ya, tempat kami memiliki area parkir yang cukup luas untuk
-                                    mobil dan motor, serta dibantu petugas parkir di lokasi.</div>
+                                <div class="accordion-body">Ya, tempat kami memiliki area parkir yang cukup luas untuk mobil dan motor, serta dibantu petugas parkir di lokasi.</div>
                             </div>
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
                                     <strong>Apakah ada ketentuan pakaian?</strong>
                                 </button>
                             </h2>
                             <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">Untuk keselarasan acara, kami merekomendasikan pakaian
-                                    bernuansa Dusty Rose, Cream, atau warna pastel serupa.</div>
+                                <div class="accordion-body">Untuk keselarasan acara, kami merekomendasikan pakaian bernuansa Dusty Rose, Cream, atau warna pastel serupa.</div>
                             </div>
                         </div>
                     </div>
@@ -1639,7 +1240,7 @@
             <div class="row justify-content-center g-4">
                 <div class="col-md-5" data-aos="fade-right">
                     <div class="ucapan-form-card">
-                        <h5 class="font-serif mb-4" style="font-size:1.1rem;">Kirim Ucapanmu 💌</h5>
+                        <h5 class="font-serif mb-4" style="font-size:1.15rem;">Kirim Ucapanmu 💌</h5>
                         <input type="text" class="ucapan-input" id="uc-name" placeholder="Nama kamu..." maxlength="60">
                         <select class="ucapan-input" id="uc-attend">
                             <option value="">-- Konfirmasi Kehadiran --</option>
@@ -1647,17 +1248,15 @@
                             <option value="mungkin">🤔 Mungkin Hadir</option>
                             <option value="tidak">❌ Tidak Bisa Hadir</option>
                         </select>
-                        <textarea class="ucapan-input" id="uc-msg" placeholder="Tulis ucapan dan doa terbaikmu..."
-                            maxlength="300"></textarea>
-                        <button class="btn-main w-100" onclick="kirimUcapan()"
-                            style="width:100%; text-align:center; justify-content:center;">
+                        <textarea class="ucapan-input" id="uc-msg" placeholder="Tulis ucapan dan doa terbaikmu..." maxlength="300"></textarea>
+                        <button class="btn-main w-100" onclick="kirimUcapan()" style="width:100%; text-align:center; justify-content:center;">
                             <i class="fas fa-paper-plane me-2"></i> Kirim Ucapan
                         </button>
                     </div>
                 </div>
                 <div class="col-md-5" data-aos="fade-left">
                     <div class="ucapan-form-card" style="height: 100%;">
-                        <h5 class="font-serif mb-4" style="font-size:1.1rem;">Ucapan Tamu 💬</h5>
+                        <h5 class="font-serif mb-4" style="font-size:1.15rem;">Ucapan Tamu 💬</h5>
                         <div class="ucapan-list" id="ucapan-list">
                             <div class="ucapan-empty" id="uc-empty">Belum ada ucapan. Jadilah yang pertama! 🌸</div>
                         </div>
@@ -1670,9 +1269,7 @@
     <!-- ── FOOTER ── -->
     <footer class="py-5">
         <div class="container text-center position-relative">
-            <p
-                style="color: rgba(255,255,255,0.4); font-size: 0.72rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 2rem;">
-                Protokol Kesehatan</p>
+            <p style="color: rgba(255,255,255,0.4); font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 2rem;">Protokol Kesehatan</p>
             <div class="d-flex justify-content-center gap-4 mb-5">
                 <div>
                     <div class="health-icon-wrap"><i class="fas fa-head-side-mask"></i></div>
@@ -1692,16 +1289,12 @@
                 <i class="fas fa-heart" style="color: var(--gold-light);"></i>
                 <span style="background: linear-gradient(90deg, transparent, var(--gold-light), transparent);"></span>
             </div>
-            <div
-                style="font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--gold-light); margin: 1rem 0;">
-                Terima Kasih</div>
-            <p style="color: rgba(255,255,255,0.3); font-size: 0.72rem; letter-spacing: 2px;">Amel &amp; Rusdi ·
-                14.06.2026</p>
+            <div class="footer-thanks">Terima Kasih</div>
+            <p style="color: rgba(255,255,255,0.3); font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 2px;">Amel &amp; Rusdi · 14.06.2026</p>
         </div>
     </footer>
 
     <script>
-        // ── Cover ──
         function openInvitation() {
             document.getElementById("myAudio").play();
             isPlaying = true;
@@ -1710,7 +1303,6 @@
             setTimeout(() => AOS.refresh(), 600);
         }
 
-        // ── Audio ──
         var isPlaying = false;
         function toggleAudio() {
             var audio = document.getElementById("myAudio");
@@ -1727,21 +1319,19 @@
             isPlaying = !isPlaying;
         }
 
-        // ── Lightbox ──
         var lbImages = [
-            './asset/img/pre1.jpeg', './asset/img/pre3.jpeg',
-            './asset/img/pre6.jpeg', './asset/img/pre8.jpeg',
-            './asset/img/pre2.jpeg', './asset/img/pre4.jpeg',
-            './asset/img/pre7.jpeg', './asset/img/pre9.jpeg'
+            './asset/img/pre1.jpeg','./asset/img/pre3.jpeg',
+            './asset/img/pre6.jpeg','./asset/img/pre8.jpeg',
+            './asset/img/pre2.jpeg','./asset/img/pre4.jpeg',
+            './asset/img/pre7.jpeg','./asset/img/pre9.jpeg'
         ];
         var lbCurrent = 0;
 
-        // Build film-strip dots
         var strip = document.getElementById('lb-strip');
-        lbImages.forEach(function (_, i) {
+        lbImages.forEach(function(_, i) {
             var d = document.createElement('div');
             d.className = 'lb-dot' + (i === 0 ? ' active' : '');
-            d.onclick = function (e) { e.stopPropagation(); lbGoTo(i); };
+            d.onclick = function(e) { e.stopPropagation(); lbGoTo(i); };
             strip.appendChild(d);
         });
 
@@ -1767,42 +1357,37 @@
             updateLb(false);
         }
 
-        function lbGoTo(idx) {
-            lbCurrent = idx;
-            updateLb(false);
-        }
+        function lbGoTo(idx) { lbCurrent = idx; updateLb(false); }
 
         function updateLb(instant) {
             var img = document.getElementById('lb-img');
             if (!instant) img.style.opacity = '0';
-            setTimeout(function () {
+            setTimeout(function() {
                 img.src = lbImages[lbCurrent];
                 img.style.opacity = '1';
             }, instant ? 0 : 160);
             document.getElementById('lb-counter').textContent = (lbCurrent + 1) + ' / ' + lbImages.length;
-            document.querySelectorAll('.lb-dot').forEach(function (d, i) {
+            document.querySelectorAll('.lb-dot').forEach(function(d, i) {
                 d.classList.toggle('active', i === lbCurrent);
             });
         }
 
-        // Touch swipe
         var touchStartX = 0;
-        document.getElementById('lb-backdrop').addEventListener('touchstart', function (e) {
+        document.getElementById('lb-backdrop').addEventListener('touchstart', function(e) {
             touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
-        document.getElementById('lb-backdrop').addEventListener('touchend', function (e) {
+        document.getElementById('lb-backdrop').addEventListener('touchend', function(e) {
             var dx = e.changedTouches[0].screenX - touchStartX;
             if (Math.abs(dx) > 50) lbNav(dx < 0 ? 1 : -1);
         }, { passive: true });
 
-        document.addEventListener('keydown', function (e) {
+        document.addEventListener('keydown', function(e) {
             if (!document.getElementById('lb-backdrop').classList.contains('active')) return;
             if (e.key === 'ArrowRight') lbNav(1);
             if (e.key === 'ArrowLeft') lbNav(-1);
             if (e.key === 'Escape') closeLb();
         });
 
-        // ── Ucapan ──
         const API_URL = 'https://be-undangan-chi.vercel.app/api/ucapan';
 
         function renderUcapan(data) {
@@ -1812,12 +1397,12 @@
                 return;
             }
             list.innerHTML = '<div class="ucapan-empty" id="uc-empty" style="display:none;">Belum ada ucapan. Jadilah yang pertama! 🌸</div>';
-            data.forEach(function (u) {
+            data.forEach(function(u) {
                 var attendLabel = u.kehadiran === "hadir" ? "Hadir" : u.kehadiran === "mungkin" ? "Mungkin Hadir" : "Tidak Hadir";
                 var attendClass = u.kehadiran === "hadir" ? "hadir" : u.kehadiran === "mungkin" ? "mungkin" : "tidak";
                 var el = document.createElement("div");
                 el.className = "ucapan-bubble mb-2";
-                el.innerHTML = '<span class="uc-quote">"</span>'
+                el.innerHTML = '<span class="uc-quote">\u201C</span>'
                     + '<div class="uc-name">' + escHtml(u.nama) + '</div>'
                     + '<span class="uc-attend ' + attendClass + '">' + attendLabel + '</span>'
                     + '<p class="uc-msg">' + escHtml(u.pesan) + '</p>';
@@ -1825,29 +1410,26 @@
             });
         }
 
-        function escHtml(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+        function escHtml(s) { return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
         async function fetchUcapan() {
             try {
                 const res = await fetch(API_URL);
                 const data = await res.json();
                 renderUcapan(data);
-            } catch (err) { console.error('Gagal mengambil ucapan:', err); }
+            } catch(err) { console.error('Gagal mengambil ucapan:', err); }
         }
 
         async function kirimUcapan() {
             var name = document.getElementById("uc-name").value.trim();
             var attend = document.getElementById("uc-attend").value;
             var msg = document.getElementById("uc-msg").value.trim();
-
             if (!name) { alert("Mohon isi nama kamu dulu ya 🙏"); return; }
             if (!attend) { alert("Mohon pilih konfirmasi kehadiran ya 🙏"); return; }
             if (!msg) { alert("Mohon tulis ucapannya dulu ya 🌸"); return; }
-
             const btn = document.querySelector('button[onclick="kirimUcapan()"]');
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Mengirim...';
-
             try {
                 const res = await fetch(API_URL, {
                     method: 'POST',
@@ -1861,7 +1443,7 @@
                     document.getElementById("uc-msg").value = "";
                     document.getElementById("ucapan-list").scrollTop = 0;
                 } else { alert("Gagal mengirim ucapan, coba lagi nanti."); }
-            } catch (err) { console.error('Error:', err); alert("Terjadi kesalahan jaringan."); }
+            } catch(err) { console.error('Error:', err); alert("Terjadi kesalahan jaringan."); }
             finally {
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-paper-plane me-2"></i> Kirim Ucapan';
@@ -1870,18 +1452,17 @@
 
         fetchUcapan();
 
-        // ── Countdown ──
         var target = new Date("June 14, 2026 07:00:00").getTime();
         function tick() {
             var diff = target - Date.now();
             if (diff < 0) {
-                document.getElementById("countdown").innerHTML = '<p style="color:var(--gold-light); font-family:\'Great Vibes\', cursive; font-size:2rem;">Hari Bahagia Telah Tiba! 🎉</p>';
+                document.getElementById("countdown").innerHTML = '<p style="color:var(--gold-light); font-family:\'Cormorant Garamond\', serif; font-style:italic; font-size:2.5rem;">Hari Bahagia Telah Tiba! 🎉</p>';
                 return;
             }
-            document.getElementById("cd-days").textContent = String(Math.floor(diff / 86400000)).padStart(2, "0");
-            document.getElementById("cd-hours").textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, "0");
-            document.getElementById("cd-min").textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, "0");
-            document.getElementById("cd-sec").textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2, "0");
+            document.getElementById("cd-days").textContent = String(Math.floor(diff/86400000)).padStart(2,"0");
+            document.getElementById("cd-hours").textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,"0");
+            document.getElementById("cd-min").textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,"0");
+            document.getElementById("cd-sec").textContent = String(Math.floor((diff%60000)/1000)).padStart(2,"0");
         }
         tick();
         setInterval(tick, 1000);
@@ -1892,5 +1473,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>
