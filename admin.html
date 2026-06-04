@@ -243,6 +243,62 @@
             margin-top: 4px;
         }
 
+        /* ── GENERATOR BARU ── */
+        .generator-wrap {
+            background: #fff;
+            border: 1px solid var(--primary-light);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 16px rgba(176, 125, 110, 0.05);
+        }
+
+        .generator-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary-dark);
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+        }
+
+        .generator-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .generator-controls .search-input {
+            margin-bottom: 0;
+            flex: 1;
+            padding-left: 12px;
+            min-width: 200px;
+        }
+
+        .btn-generate {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 10px 18px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-generate:hover {
+            opacity: 0.9;
+        }
+
+        .btn-generate.copied {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+
         /* Search + Filter */
         .toolbar {
             display: flex;
@@ -424,25 +480,6 @@
             color: #388e3c;
         }
 
-        .btn-wa {
-            background: #25d366;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            padding: 6px 12px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            white-space: nowrap;
-            text-decoration: none;
-            flex-shrink: 0;
-            transition: background 0.2s;
-        }
-
-        .btn-wa:hover {
-            background: #1ebe5d;
-            color: #fff;
-        }
-
         /* No results */
         .no-results {
             text-align: center;
@@ -454,51 +491,6 @@
 
         .no-results.show {
             display: block;
-        }
-
-        /* Copy all */
-        .bottom-bar {
-            max-width: 800px;
-            margin: 1.5rem auto 0;
-            padding: 0 1.5rem;
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .btn-copy-all {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            padding: 10px 22px;
-            font-family: 'Cinzel', serif;
-            font-size: 0.6rem;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: all 0.25s;
-        }
-
-        .btn-copy-all:hover {
-            opacity: 0.88;
-        }
-
-        .btn-copy-visible {
-            background: #fff;
-            color: var(--primary);
-            border: 1.5px solid var(--primary);
-            border-radius: 10px;
-            padding: 10px 22px;
-            font-family: 'Cinzel', serif;
-            font-size: 0.6rem;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: all 0.25s;
-        }
-
-        .btn-copy-visible:hover {
-            background: var(--primary-light);
         }
 
         @media (max-width: 520px) {
@@ -567,6 +559,17 @@
                 </div>
             </div>
 
+            <!-- GENERATOR LINK BARU -->
+            <div class="generator-wrap">
+                <div class="generator-title">Generator Link Tamu Tambahan</div>
+                <div class="generator-controls">
+                    <input type="text" id="new-guest-input" class="search-input"
+                        placeholder="Ketik nama tamu baru di sini..."
+                        onkeydown="if(event.key==='Enter') generateAndCopyNewLink(this.nextElementSibling)">
+                    <button class="btn-generate" onclick="generateAndCopyNewLink(this)">✨ Buat & Salin Pesan</button>
+                </div>
+            </div>
+
             <div class="toolbar">
                 <div class="search-wrap">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -589,11 +592,6 @@
             <div id="guest-container"></div>
             <div class="no-results" id="no-results">Tidak ada tamu yang cocok dengan pencarian 🔍</div>
         </div>
-
-        <div id="guest-container"></div>
-        <div class="no-results" id="no-results">Tidak ada tamu yang cocok dengan pencarian 🔍</div>
-    </div>
-
     </div>
 
     <script>
@@ -630,7 +628,7 @@
                 id: "alkamilah",
                 label: "Alkamilah",
                 tagClass: "tag-alkamilah",
-                guests: [ "Didah", "Damut", "Linda", "Nunung", "Rafa", "Laila Budi", "Marwah", "Apun", "Teh Piti", "Teh Hasni", "Teh Rida", "Teh Linea", "Teh Nelvici", ]
+                guests: ["Didah", "Damut", "Linda", "Nunung", "Rafa", "Laila Budi", "Marwah", "Apun", "Teh Piti", "Teh Hasni", "Teh Rida", "Teh Linea", "Teh Nelvici",]
             }
         ];
 
@@ -662,14 +660,22 @@
             return `Assalamu'alaikum Warahmatullahi Wabarakatuh
 Salam Sejahtera ✨
 
-Halo *${name}*, kami *Amel & Rusdi*.
+Kepada Yang Kami Hormati,
+*${name}*
 
-Perjalanan cinta kami tumbuh dari sebuah cerita sederhana yang penuh rasa syukur, hingga akhirnya membawa kami pada titik ini. Atas izin dan rida-Nya, kami berdua kini siap melangkah bersama untuk mengikat janji suci di lembaran hidup yang baru.
+Dengan memohon rahmat serta rida Tuhan Yang Maha Esa, kami bermaksud membagikan kabar bahagia ini kepada *${name}*.
 
-Hari bahagia kami tentu akan terasa jauh lebih lengkap dan bermakna dengan kehadiranmu di sana. Dengan sepenuh hati, kami mengundangmu untuk hadir merayakan momen ini sekaligus memberikan doa restu bagi langkah awal petualangan hidup kami yang baru. 🤍
+Kami, *Amel & Rusdi*, telah memutuskan untuk mengikat janji suci dan melangkah bersama dalam ikatan pernikahan. Momen bersejarah ini tentu tidak akan terasa utuh tanpa kehadiran dan iringan doa restu dari keluarga, sahabat, dan rekan terkasih.
 
-Silakan buka tautan di bawah ini untuk melihat detail undangan digital kami:
-${url}`;
+Melalui pesan ini, dengan segala kerendahan hati, kami mengundang *${name}* untuk berkenan hadir dan memberikan doa restu pada hari bahagia kami. 🤍
+
+Informasi selengkapnya mengenai rangkaian acara pernikahan kami dapat diakses melalui tautan undangan digital berikut:
+
+${url}
+
+Merupakan suatu kehormatan dan kebahagiaan yang tak terhingga bagi kami berdua apabila *${name}* berkenan hadir. Atas perhatian dan doa restunya, kami ucapkan terima kasih.
+
+Wassalamu'alaikum Warahmatullahi Wabarakatuh.`;
         }
 
         // Auto-login jika sudah auth di session
@@ -681,12 +687,6 @@ ${url}`;
         // ── BUILD LIST ──
         function makeUrl(name) {
             return BASE_URL + "?to=" + encodeURIComponent(name);
-        }
-
-        function makeWaUrl(name) {
-            const url = makeUrl(name);
-            const msg = "Halo " + name + " 🌸\nKami mengundang kamu ke pernikahan Amel & Rusdi.\nBuka undangannya di sini ya:\n" + url;
-            return "https://wa.me/?text=" + encodeURIComponent(msg);
         }
 
         let allItems = []; // { el, name, groupId, groupLabel }
@@ -719,7 +719,7 @@ ${url}`;
         <span class="guest-name">${name}</span>
         <span class="guest-group-tag ${group.tagClass}">${group.label}</span>
      <span class="guest-url">${url}</span>
-        <button class="btn-copy" onclick="copyUrl('${name.replace(/'/g,"\\'")}', '${url.replace(/'/g,"\\'")}', this)">📋 Salin Pesan</button>
+        <button class="btn-copy" onclick="copyUrl('${name.replace(/'/g, "\\'")}', '${url.replace(/'/g, "\\'")}', this)">📋 Salin Pesan</button>
       `;
                     listEl.appendChild(item);
                     allItems.push({ el: item, labelEl, listEl, name: name.toLowerCase(), groupId: group.id });
@@ -732,7 +732,6 @@ ${url}`;
             document.getElementById('stat-total').textContent = totalGuests;
             document.getElementById('stat-visible').textContent = totalGuests;
 
-            // Show panel after build
             buildList._built = true;
         }
 
@@ -742,8 +741,6 @@ ${url}`;
             const groupFilter = document.getElementById('filter-group').value;
 
             let visibleCount = 0;
-
-            // Track which groups have visible items
             const groupVisible = {};
 
             allItems.forEach(item => {
@@ -757,7 +754,6 @@ ${url}`;
                 }
             });
 
-            // Show/hide group labels
             document.querySelectorAll('.group-label, .guest-list').forEach(el => {
                 const gid = el.dataset.group;
                 el.style.display = groupVisible[gid] ? '' : 'none';
@@ -769,7 +765,6 @@ ${url}`;
 
         // ── COPY ──
         function copyUrl(name, url, btn) {
-            // Panggil fungsi pembuat pesan
             const textToCopy = generateMessage(name, url);
 
             navigator.clipboard.writeText(textToCopy).then(() => {
@@ -780,27 +775,35 @@ ${url}`;
             });
         }
 
-        function copyAll() {
-            let text = "";
-            GROUPS.forEach(g => {
-                text += `=== ${g.label} ===\n`;
-                g.guests.forEach(name => { text += `${name}: ${makeUrl(name)}\n`; });
-                text += "\n";
-            });
-            navigator.clipboard.writeText(text).then(() => {
-                alert("✅ Semua link berhasil disalin!");
-            });
-        }
+        // ── GENERATOR BARU ──
+        function generateAndCopyNewLink(btn) {
+            const inputEl = document.getElementById('new-guest-input');
+            const newName = inputEl.value.trim();
 
-        function copyVisible() {
-            const visible = allItems.filter(i => !i.el.classList.contains('hidden-item'));
-            if (visible.length === 0) { alert("Tidak ada item yang tampil."); return; }
-            const text = visible.map(i => {
-                const name = i.el.querySelector('.guest-name').textContent;
-                return `${name}: ${makeUrl(name)}`;
-            }).join('\n');
-            navigator.clipboard.writeText(text).then(() => {
-                alert(`✅ ${visible.length} link berhasil disalin!`);
+            if (!newName) {
+                alert("Masukin nama tamu barunya dulu, bre!");
+                inputEl.focus();
+                return;
+            }
+
+            const url = makeUrl(newName);
+            const textToCopy = generateMessage(newName, url);
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const orig = btn.innerHTML;
+                btn.innerHTML = '✓ Berhasil Dibuat & Disalin';
+                btn.classList.add('copied');
+
+                // Kosongin input setelah sukses disalin
+                inputEl.value = '';
+
+                setTimeout(() => {
+                    btn.innerHTML = orig;
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Gagal menyalin teks:', err);
+                alert("Gagal menyalin pesan. Coba lagi.");
             });
         }
 
