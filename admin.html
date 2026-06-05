@@ -657,28 +657,30 @@
         }
 
         function generateMessage(name, url) {
-            return `Assalamualaikum Warahmatullahi Wabarakatuh
+            return `Kepada Yth.
+                Bapak/Ibu/Saudara/i
+                ${name}
+                _______
 
-Kepada Yth.
-${name}
+                Tanpa mengurangi rasa hormat,
+                perkenankan kami mengundang
+                Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami.
 
-Dengan hormat dan memohon doa restu, perkenankan kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.
+                Berikut link undangan kami, untuk info lengkap dari acara, bisa kunjungi :
 
-Kami, Amel & Rusdi, telah memutuskan untuk mengikat janji suci dan melangkah bersama dalam ikatan pernikahan. Momen bersejarah ini tentu tidak akan terasa utuh tanpa kehadiran dan iringan doa restu dari keluarga, sahabat, dan rekan terkasih.
+                ${url}
 
-Melalui pesan ini, dengan segala kerendahan hati, kami mengundang ${name} untuk berkenan hadir dan memberikan doa restu pada hari bahagia kami. 🤍
+                NB: Hasil maksimal buka lewat browser Chrome/Safari
 
-Informasi selengkapnya mengenai rangkaian acara pernikahan kami dapat diakses melalui tautan undangan digital berikut :
+                Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.
 
-${url}
+                Terima Kasih
 
-Harap link dibuka menggunakan Google Chrome.
+                Hormat Kami,
+                Rusdi & Amel
+                _______`;
+    }
 
-Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.
-
-Kami yang berbahagia,
-Rusdi & Amel`;
-        }
 
         // Auto-login jika sudah auth di session
         if (sessionStorage.getItem('admin_auth') === '1') {

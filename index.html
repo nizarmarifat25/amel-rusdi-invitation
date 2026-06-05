@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="./asset/img/pre1.jpeg">
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1738,29 +1739,38 @@
             guestEl.textContent = toName;
         }
 
-        function openInvitation() {
-            document.getElementById("myAudio").play();
-            isPlaying = true;
-            document.getElementById("box").classList.add("hide");
-            document.getElementById("audioControl").style.display = "flex";
-            setTimeout(() => AOS.refresh(), 600);
-        }
+      function openInvitation() {
+    const audio = document.getElementById("myAudio");
 
-        var isPlaying = false;
-        function toggleAudio() {
-            var audio = document.getElementById("myAudio");
-            var ctrl = document.getElementById("audioControl");
-            if (isPlaying) {
-                audio.pause();
-                ctrl.classList.add("audio-paused");
-                ctrl.innerHTML = '<i class="fas fa-volume-mute"></i>';
-            } else {
-                audio.play();
-                ctrl.classList.remove("audio-paused");
-                ctrl.innerHTML = '<i class="fas fa-music"></i>';
-            }
-            isPlaying = !isPlaying;
-        }
+    audio.currentTime = 60; // mulai dari menit 1
+    audio.play();
+
+    isPlaying = true;
+    audioInitialized = true;
+
+    document.getElementById("box").classList.add("hide");
+    document.getElementById("audioControl").style.display = "flex";
+    setTimeout(() => AOS.refresh(), 600);
+}
+
+let isPlaying = false;
+
+function toggleAudio() {
+    const audio = document.getElementById("myAudio");
+    const ctrl = document.getElementById("audioControl");
+
+    if (isPlaying) {
+        audio.pause();
+        ctrl.classList.add("audio-paused");
+        ctrl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+    } else {
+        audio.play();
+        ctrl.classList.remove("audio-paused");
+        ctrl.innerHTML = '<i class="fas fa-music"></i>';
+    }
+
+    isPlaying = !isPlaying;
+}
 
         var lbImages = [
             './asset/img/pre1.jpeg', './asset/img/pre3.jpeg',
@@ -1778,6 +1788,7 @@
             strip.appendChild(d);
         });
 
+        
         function openLb(idx) {
             lbCurrent = idx;
             document.getElementById('lb-backdrop').classList.add('active');
